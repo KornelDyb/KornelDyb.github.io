@@ -1,0 +1,35 @@
+
+
+
+
+.animation-blink{
+	animation: myAnim 2s ease 0s 1 normal forwards
+}
+@keyframes myAnim {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+.start-animation {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+}
+
+
+#special {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Dodatkowy margines na górę dla estetyki */
+}
+
+#info {
+	text-align: center;
+	font-size: 10px;
+}
