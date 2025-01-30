@@ -45,3 +45,5 @@ function skopiujEmail() {
             alert('Wystąpił błąd podczas kopiowania adresu e-mail do schowka. Spróbuj ponownie.');
         });
 }
+let age = new Date().getFullYear() - 1998;
+document.getElementById("age").textContent = age;
