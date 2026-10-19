@@ -95,6 +95,8 @@
   @media (max-width: 760px) { .cvdl { grid-template-columns: 1fr; } }
   .contact .mail { margin-top: 10px; font-size: 0.95rem; }
   .contact .mail a { color: inherit; }
+  .contact button.btn { background: none; font-family: var(--body); cursor: pointer; }
+  .contact button.btn:hover { background: color-mix(in srgb, var(--deep-ink) 12%, transparent); }
   /* ---------- about + contact ---------- */
   .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
   .about p { color: var(--ink-2); }
@@ -152,7 +154,7 @@
       <div class="portrait">
         <div class="photo"><img src="assets/profile.webp" width="540" height="575" alt="Kornel Dybalski"></div>
         <a class="botcard" id="botcard" href="projects/nbp-rates/" hidden>
-          <div class="k"><span lang="pl">Najnowszy kurs, pobrany przez mój bot</span><span lang="en">Latest rate, fetched by my bot</span></div>
+          <div class="k"><span lang="pl">Najnowszy kurs, pobrany przez mojego bota</span><span lang="en">Latest rate, fetched by my bot</span></div>
           <div class="v" id="bot-rate">–</div>
           <div class="d muted" id="bot-meta"></div>
         </a>
@@ -364,6 +366,7 @@
         </div>
         <div class="row">
           <a class="btn primary" href="mailto:korneldybalski@gmail.com?subject=Kontakt%20ze%20strony%20korneldyb.github.io"><span lang="pl">Napisz e-mail</span><span lang="en">Send an email</span></a>
+          <button type="button" class="btn" id="copy-mail" data-mail="korneldybalski@gmail.com"><span class="cm-idle"><span lang="pl">Kopiuj adres</span><span lang="en">Copy address</span></span><span class="cm-done" hidden><span lang="pl">Skopiowano ✓</span><span lang="en">Copied ✓</span></span></button>
           <a class="btn" href="https://www.linkedin.com/in/kornel-dybalski-0342a8196/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="https://github.com/KornelDyb" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -399,6 +402,24 @@
         card.hidden = false;
       })
       .catch(() => {});
+  })();
+</script>
+<script>
+  // "Copy address": works even when no mail app is set up for mailto links
+  (function () {
+    const b = document.getElementById("copy-mail");
+    if (!b) return;
+    const idle = b.querySelector(".cm-idle"), done = b.querySelector(".cm-done");
+    b.addEventListener("click", async () => {
+      const mail = b.dataset.mail;
+      try { await navigator.clipboard.writeText(mail); }
+      catch (e) {
+        const t = document.createElement("textarea"); t.value = mail; t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (e2) {} t.remove();
+      }
+      idle.hidden = true; done.hidden = false;
+      setTimeout(() => { idle.hidden = false; done.hidden = true; }, 2200);
+    });
   })();
 </script>
 </body>
