@@ -1,0 +1,52 @@
+name: cv
+
+# Rebuild the CV (home page section, cv/ pages and the four PDFs)
+# whenever the CV data, the generator or the photo changes.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/cv.json"
+      - "tools/build_cv.py"
+      - "assets/profile.png"
+      - "assets/fonts/static/**"
+      - ".github/workflows/cv.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cv
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright==1.48.0
+          python -m playwright install --with-deps chromium
+
+      - name: Build CV from data/cv.json
+        run: python tools/build_cv.py
+
+      - name: Commit generated files
+        run: |
+          git config user.name  "cv-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html cv assets/cv
+          if git diff --cached --quiet; then
+            echo "CV already up to date."
+          else
+            git commit -m "cv: rebuild from data/cv.json"
+            git pull --rebase
+            git push
+          fi

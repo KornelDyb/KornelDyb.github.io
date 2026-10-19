@@ -1,0 +1,445 @@
+{
+  "_comment": "Single source of truth for the CV. Edit this file and push: GitHub Actions rebuilds the experience section on the home page, the CV pages (cv/) and all PDFs. Every text has a Polish (pl) and English (en) version. 'short' is an optional shorter wording used by the one-page design CV. 'in_pdf': false keeps a role on the website only. A plain string is the same in both languages; otherwise use {\"pl\": …, \"en\": …}.",
+  "person": {
+    "name": "Kornel Dybalski",
+    "title": {
+      "pl": "Data Analyst · CRM & Automation",
+      "en": "Data Analyst · CRM & Automation"
+    },
+    "location": {
+      "pl": "Warszawa",
+      "en": "Warsaw, Poland"
+    },
+    "phone": "+48 794 445 676",
+    "email": "korneldybalski@gmail.com",
+    "linkedin": "linkedin.com/in/kornel-dybalski-0342a8196",
+    "linkedin_short": "in/kornel-dybalski",
+    "github": "github.com/KornelDyb",
+    "website": "korneldyb.github.io",
+    "photo": "assets/profile.png"
+  },
+  "summary": {
+    "pl": "Data Analyst z ponad 3-letnim doświadczeniem w analizie danych, administracji CRM i automatyzacji raportowania. W Respect Energy rozwijałem CRM dla 200–300 użytkowników sprzedaży: przeprowadziłem ok. 100–120 zmian rozwojowych i obsłużyłem 200–300 zgłoszeń błędów. Odpowiadam na pytania biznesowe z pomocą SQL (Snowflake) i Power BI, a powtarzalne zadania automatyzuję w Pythonie, n8n i przez API.",
+    "en": "Data Analyst with 3+ years of experience in data analysis, CRM administration and reporting automation. At Respect Energy I developed the CRM for 200–300 sales users: I delivered around 100–120 change requests and handled 200–300 bug reports. I answer business questions with SQL (Snowflake) and Power BI, and automate repetitive work with Python, n8n and APIs."
+  },
+  "summary_short": {
+    "pl": "Ponad 3 lata w analizie danych, administracji CRM i automatyzacji raportowania. Odpowiadam na pytania biznesowe z pomocą SQL (Snowflake) i Power BI, a powtarzalną pracę zamieniam w automaty w Pythonie, n8n i przez API.",
+    "en": "3+ years in data analysis, CRM administration and reporting automation. I answer business questions with SQL (Snowflake) and Power BI, and turn repetitive work into automations in Python, n8n and APIs."
+  },
+  "stats": [
+    {
+      "value": "200–300",
+      "label": {
+        "pl": "użytkowników CRM",
+        "en": "CRM users"
+      }
+    },
+    {
+      "value": "100–120",
+      "label": {
+        "pl": "wdrożonych zmian w CRM",
+        "en": "CRM changes delivered"
+      }
+    },
+    {
+      "value": "~200",
+      "label": {
+        "pl": "przeszkolonych osób",
+        "en": "people trained"
+      }
+    },
+    {
+      "value": "4",
+      "label": {
+        "pl": "dashboardy Power BI",
+        "en": "Power BI dashboards"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "role": {
+        "pl": "Sales Support System Administration Specialist (CRM)",
+        "en": "Sales Support System Administration Specialist (CRM)"
+      },
+      "company": "Respect Energy",
+      "city": {
+        "pl": "Warszawa",
+        "en": "Warsaw"
+      },
+      "from": "2024-08",
+      "to": "2026-09",
+      "bullets": [
+        {
+          "pl": "Administrowałem CRM Salesbook dla 200–300 użytkowników sprzedaży (lejek sprzedażowy, struktura danych, uprawnienia); przeszkoliłem ok. 200 z nich.",
+          "en": "Administered the Salesbook CRM for 200–300 sales users (sales pipeline, data structure, permissions); trained around 200 of them.",
+          "short": {
+            "pl": "Administrowałem CRM Salesbook dla 200–300 użytkowników sprzedaży; przeszkoliłem ok. 200 osób.",
+            "en": "Administered the Salesbook CRM for 200–300 sales users; trained around 200 people."
+          }
+        },
+        {
+          "pl": "Przeprowadziłem ok. 100–120 zmian rozwojowych (change requests), od zebrania wymagań po testy UAT i wdrożenie, oraz obsłużyłem 200–300 zgłoszeń błędów.",
+          "en": "Delivered around 100–120 change requests, from requirements gathering through UAT to release, and handled 200–300 bug reports.",
+          "short": {
+            "pl": "Przeprowadziłem ok. 100–120 zmian rozwojowych (od wymagań po testy UAT) i obsłużyłem 200–300 zgłoszeń błędów.",
+            "en": "Delivered around 100–120 change requests (requirements to UAT) and handled 200–300 bug reports."
+          }
+        },
+        {
+          "pl": "Zautomatyzowałem cenniki w CRM: ceny minimalne pobierają się z SQL, zamiast być przepisywane ręcznie z maili. Ograniczyło to błędy wynikające z nieaktualnych cenników i skróciło przygotowanie oferty; handlowiec dodaje tylko marżę.",
+          "en": "Automated price lists in the CRM: minimum prices are pulled from SQL instead of being copied by hand from emails. This cut errors caused by outdated price lists and shortened offer preparation; reps now only add their margin.",
+          "short": {
+            "pl": "Zautomatyzowałem cenniki: ceny minimalne pobierają się z SQL zamiast ręcznego przepisywania z maili, co ograniczyło błędy w ofertach.",
+            "en": "Automated price lists: minimum prices come from SQL instead of being retyped from emails, cutting errors in offers."
+          }
+        },
+        {
+          "pl": "Przeniosłem proces wycen z korespondencji mailowej do CRM: handlowiec zamawia wycenę zmianą statusu, a dział wycen odpowiada w systemie, z pełną historią i widocznością sprawy.",
+          "en": "Moved the pricing-request process from email into the CRM: a rep requests a quote by changing a status, and the pricing team answers in the system, with full history and visibility.",
+          "short": {
+            "pl": "Przeniosłem proces wycen z korespondencji mailowej do CRM, z pełną historią każdej sprawy.",
+            "en": "Moved pricing requests from email into the CRM, with full history for every case."
+          }
+        },
+        {
+          "pl": "Skonfigurowałem automatyzacje workflow w CRM, m.in. powiadomienia e-mail i automatyczne notatki przy zmianie statusu.",
+          "en": "Configured CRM workflow automations, including email notifications and automatic notes on status changes.",
+          "short": {
+            "pl": "Konfigurowałem automatyzacje workflow w CRM i odpowiadałem na pytania biznesowe zapytaniami SQL.",
+            "en": "Configured CRM workflow automations and answered business questions with SQL queries."
+          }
+        },
+        {
+          "pl": "Zbudowałem 4 dashboardy w Power BI na danych ze Snowflake (SQL, DAX): koszty licencji CRM na podstawie aktywnych kont, lejek sprzedaży nowego produktu (klienci i wolumen według statusu), aktualne i archiwalne cenniki oraz postęp kampanii kluczowych klientów według handlowców.",
+          "en": "Built 4 Power BI dashboards on Snowflake data (SQL, DAX): CRM licence costs based on active accounts, the sales funnel of a new product (customers and volume by status), current and historical price lists, and key-account campaign progress by sales rep.",
+          "short": {
+            "pl": "Zbudowałem 4 dashboardy Power BI na danych ze Snowflake: koszty licencji, lejek nowego produktu, cenniki i kampania kluczowych klientów.",
+            "en": "Built 4 Power BI dashboards on Snowflake data: licence costs, new-product funnel, price lists and a key-account campaign."
+          }
+        },
+        {
+          "pl": "Zautomatyzowałem w Pythonie cotygodniowy raport KPI kluczowych klientów (ETL: API → Python → Excel → automatyczna wysyłka e-mail): liczba spotkań i aktywnych wątków, trend tydzień do tygodnia, wyniki handlowców na tle średniej zespołu; raport zastąpił ok. 2 h ręcznej pracy tygodniowo.",
+          "en": "Automated a weekly key-account KPI report in Python (ETL: API → Python → Excel → automatic email): number of meetings and active threads, week-over-week trend, each rep against the team average; the report replaced about 2 hours of manual work per week.",
+          "short": {
+            "pl": "Zautomatyzowałem w Pythonie tygodniowy raport KPI kluczowych klientów (API → Excel → e-mail), oszczędzając ok. 2 h pracy tygodniowo.",
+            "en": "Automated a weekly key-account KPI report in Python (API → Excel → email), saving about 2 hours of work per week."
+          }
+        },
+        {
+          "pl": "Odpowiadałem na pytania biznesowe z danymi, pisząc zapytania SQL łączące tabele w hurtowni Snowflake.",
+          "en": "Answered business questions with data, writing SQL queries joining tables in the Snowflake data warehouse.",
+          "short": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "pl": "Junior Analyst",
+        "en": "Junior Analyst"
+      },
+      "company": "Sky Estate",
+      "city": {
+        "pl": "Warszawa",
+        "en": "Warsaw"
+      },
+      "from": "2024-03",
+      "to": "2024-07",
+      "bullets": [
+        {
+          "pl": "Wyszukiwałem i analizowałem ok. 40–50 inwestycji nieruchomościowych o wartości liczonej w milionach PLN, licząc ROI w modelach finansowych w Excelu.",
+          "en": "Sourced and analysed around 40–50 real-estate investments worth millions of PLN each, calculating ROI in Excel financial models.",
+          "short": {
+            "pl": "Przeanalizowałem ok. 40–50 inwestycji nieruchomościowych o wartości liczonej w milionach PLN (modele ROI w Excelu).",
+            "en": "Analysed around 40–50 real-estate investments worth millions of PLN (ROI models in Excel)."
+          }
+        },
+        {
+          "pl": "Rekomendowałem Zarządowi, które budynki kupić i jak je skomercjalizować, na podstawie porównania rentowności (ROI).",
+          "en": "Recommended to the Board which buildings to buy and how to commercialise them, based on ROI comparisons.",
+          "short": {
+            "pl": "Rekomendowałem Zarządowi zakup i komercjalizację budynków; analizowałem tabele czynszowe w SAP Business One.",
+            "en": "Recommended building purchases and commercialisation to the Board; analysed rent rolls in SAP Business One."
+          }
+        },
+        {
+          "pl": "Analizowałem tabele czynszowe i efektywność produktów na danych z SAP Business One.",
+          "en": "Analysed rent rolls and product performance using SAP Business One data.",
+          "short": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "pl": "Admin Procurement SAP",
+        "en": "Procurement Administrator (SAP)"
+      },
+      "company": "Cellnex",
+      "city": {
+        "pl": "Warszawa",
+        "en": "Warsaw"
+      },
+      "from": "2023-05",
+      "to": "2024-03",
+      "bullets": [
+        {
+          "pl": "Obsługiwałem procesy zakupowe i analizowałem dane zakupowe w SAP.",
+          "en": "Ran procurement processes and analysed procurement data in SAP.",
+          "short": {
+            "pl": "Obsługiwałem procesy zakupowe w SAP i przygotowywałem zestawienia operacyjne w Excelu dla finansów i operacji.",
+            "en": "Ran procurement processes in SAP and prepared operational Excel reports for finance and operations."
+          }
+        },
+        {
+          "pl": "Przygotowywałem zestawienia operacyjne w Excelu dla działów finansów i operacji.",
+          "en": "Prepared operational Excel reports for the finance and operations teams.",
+          "short": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "pl": "Presales",
+        "en": "Presales"
+      },
+      "company": "DrSmile",
+      "city": {
+        "pl": "Warszawa",
+        "en": "Warsaw"
+      },
+      "from": "2022-09",
+      "to": "2023-03",
+      "in_pdf": false,
+      "bullets": [
+        {
+          "pl": "Prezentacje produktu i dopasowanie rozwiązania do potrzeb klienta.",
+          "en": "Product presentations and tailoring the solution to client needs.",
+          "short": null
+        },
+        {
+          "pl": "Budowanie relacji i zwiększanie konwersji; praca w Salesforce jako użytkownik.",
+          "en": "Built relationships and improved conversion; daily work in Salesforce as a user.",
+          "short": null
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "group": {
+        "pl": "Analiza danych i BI",
+        "en": "Data analysis & BI"
+      },
+      "short_group": {
+        "pl": "Dane i BI",
+        "en": "Data & BI"
+      },
+      "items": [
+        {
+          "pl": "SQL (JOIN, modelowanie danych)",
+          "en": "SQL (joins, data modelling)"
+        },
+        "Snowflake",
+        "Power BI (DAX)",
+        "Power Query",
+        {
+          "pl": "Excel (modele finansowe, VBA)",
+          "en": "Excel (financial models, VBA)"
+        },
+        {
+          "pl": "statystyka",
+          "en": "statistics"
+        }
+      ],
+      "short_items": [
+        "SQL",
+        "Snowflake",
+        "Power BI (DAX)",
+        "Power Query",
+        "Excel"
+      ]
+    },
+    {
+      "group": {
+        "pl": "Automatyzacja i integracje",
+        "en": "Automation & integrations"
+      },
+      "short_group": {
+        "pl": "Automatyzacja",
+        "en": "Automation"
+      },
+      "items": [
+        "ETL",
+        "API",
+        "n8n",
+        "Python (Pandas, NumPy, BeautifulSoup, Selenium)",
+        "Excel VBA",
+        "GitHub Actions"
+      ],
+      "short_items": [
+        "Python (Pandas, NumPy)",
+        "ETL",
+        "API",
+        "n8n",
+        "VBA"
+      ]
+    },
+    {
+      "group": {
+        "pl": "Systemy",
+        "en": "Systems"
+      },
+      "short_group": {
+        "pl": "Systemy",
+        "en": "Systems"
+      },
+      "items": [
+        "CRM (Salesbook)",
+        "Salesforce",
+        "SAP",
+        "SAP Business One",
+        "Jira",
+        "Confluence"
+      ],
+      "short_items": [
+        "CRM Salesbook",
+        "SAP",
+        "SAP Business One",
+        "Jira",
+        "Confluence"
+      ]
+    },
+    {
+      "group": {
+        "pl": "Metodyki i biznes",
+        "en": "Methods & business"
+      },
+      "short_group": {
+        "pl": "Biznes",
+        "en": "Business"
+      },
+      "items": [
+        "Agile / Scrum",
+        {
+          "pl": "analiza wymagań",
+          "en": "requirements analysis"
+        },
+        "change requests",
+        {
+          "pl": "testy UAT",
+          "en": "UAT testing"
+        },
+        {
+          "pl": "szkolenia użytkowników",
+          "en": "user training"
+        },
+        {
+          "pl": "raportowanie KPI",
+          "en": "KPI reporting"
+        }
+      ],
+      "short_items": [
+        {
+          "pl": "Analiza wymagań",
+          "en": "Requirements analysis"
+        },
+        "UAT",
+        "Agile / Scrum",
+        {
+          "pl": "Szkolenia",
+          "en": "Training"
+        }
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "name": "The Complete SQL Bootcamp: Go from Zero to Hero",
+      "short": "The Complete SQL Bootcamp",
+      "provider": "Udemy"
+    },
+    {
+      "name": "Microsoft Power BI Desktop for Business Intelligence",
+      "short": "Power BI Desktop for Business Intelligence",
+      "provider": "Udemy"
+    },
+    {
+      "name": "Python for Data Science and Machine Learning Bootcamp",
+      "short": "Python for Data Science and ML Bootcamp",
+      "provider": "Udemy"
+    },
+    {
+      "name": "Business Analysis Fundamentals – IIBA endorsed",
+      "short": "Business Analysis Fundamentals (IIBA)",
+      "provider": "Udemy"
+    }
+  ],
+  "courses_note": {
+    "pl": "Pełna lista kursów (m.in. BPMN 2.0, Jira i Confluence, UML) na LinkedIn",
+    "en": "Full list of courses (incl. BPMN 2.0, Jira & Confluence, UML) on LinkedIn"
+  },
+  "languages": [
+    {
+      "name": {
+        "pl": "Polski",
+        "en": "Polish"
+      },
+      "level": {
+        "pl": "ojczysty",
+        "en": "native"
+      }
+    },
+    {
+      "name": {
+        "pl": "Angielski",
+        "en": "English"
+      },
+      "level": {
+        "pl": "B2",
+        "en": "B2"
+      }
+    }
+  ],
+  "consent": {
+    "pl": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z RODO).",
+    "en": "I consent to the processing of my personal data for the purposes of the recruitment process (in accordance with the GDPR)."
+  },
+  "projects": [
+    {
+      "name": {
+        "pl": "Ceny mieszkań w Warszawie",
+        "en": "Warsaw apartment prices"
+      },
+      "url": "korneldyb.github.io/projects/warsaw-housing/",
+      "text": {
+        "pl": "Analiza 8 665 ogłoszeń: czyszczenie danych, przypisanie do dzielnic po współrzędnych (shapely), model regresji i kalkulator wyceny.",
+        "en": "Analysis of 8,665 listings: data cleaning, geo-matching to districts (shapely), a regression model and a price estimator."
+      },
+      "tech": "Python, pandas, numpy, shapely"
+    },
+    {
+      "name": {
+        "pl": "Automatyczny raport kursów NBP",
+        "en": "Automated NBP FX report"
+      },
+      "url": "korneldyb.github.io/projects/nbp-rates/",
+      "text": {
+        "pl": "Codzienny pipeline w GitHub Actions: pobranie z API NBP, KPI, raport, dashboard i alert przy dużym ruchu kursu.",
+        "en": "Daily GitHub Actions pipeline: NBP API fetch, KPIs, report, dashboard and an alert on large moves."
+      },
+      "tech": "Python, GitHub Actions, pytest"
+    },
+    {
+      "name": {
+        "pl": "Lead scoring",
+        "en": "Lead scoring"
+      },
+      "url": "korneldyb.github.io/projects/lead-scoring/",
+      "text": {
+        "pl": "Narzędzie dla sprzedaży: ranking leadów Hot/Warm/Cold według przejrzystych reguł, z importem i eksportem CSV.",
+        "en": "Sales tool ranking leads as Hot/Warm/Cold with transparent rules, with CSV import and export."
+      },
+      "tech": "JavaScript"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+name: nbp-rates
+
+# Every working day at 11:40 UTC (12:40/13:40 in Warsaw) – NBP publishes table A around 11:45–12:15 local time.
+on:
+  schedule:
+    - cron: "40 11 * * 1-5"
+  workflow_dispatch: {}
+  # also run right after the automation code changes (e.g. the very first push)
+  push:
+    branches: [main]
+    paths:
+      - "projects/nbp-rates/automation/**"
+      - ".github/workflows/nbp-rates.yml"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: nbp-rates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/nbp-rates/automation
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests pytest
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Fetch rates, compute KPIs, write report
+        run: python fetch_rates.py
+
+      - name: Commit updated data
+        working-directory: .
+        run: |
+          git config user.name  "nbp-rates-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add projects/nbp-rates/data projects/nbp-rates/REPORT.md
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "data: NBP rates $(date -u +%F)"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Open issue on large move
+        if: hashFiles('projects/nbp-rates/data/alert.md') != ''
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Alert kursowy NBP – $(date -u +%F)" \
+            --body-file projects/nbp-rates/data/alert.md \
+            --label "fx-alert" || \
+          gh issue create \
+            --title "Alert kursowy NBP – $(date -u +%F)" \
+            --body-file projects/nbp-rates/data/alert.md

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pl" data-lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatyczny raport kursów NBP | Kornel Dybalski</title>
+<meta name="title-pl" content="Automatyczny raport kursów NBP | Kornel Dybalski">
+<meta name="title-en" content="Automated NBP exchange-rate report | Kornel Dybalski">
+<meta name="description" content="Skrypt w Pythonie uruchamiany codziennie przez GitHub Actions: pobiera kursy walut z API NBP, liczy zmiany, aktualizuje dashboard i zakłada alerty.">
+<link rel="icon" href="../../assets/favicon.ico">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+  :root { --line-c: #2a78d6; --band: color-mix(in srgb, var(--line-c) 14%, transparent); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --line-c: #3987e5; } }
+  :root[data-theme="dark"] { --line-c: #3987e5; }
+  svg text { fill: var(--ink-2); font: 12px var(--body); }
+  svg .axis { stroke: var(--line); }
+  .runline { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 30px 0 14px; font-size: 0.95rem; color: var(--ink-2); }
+  .runline .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--good); display: inline-block; margin-right: 6px; }
+  .runline .dot.live { background: var(--marker); }
+  .cur-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--surface); overflow: hidden; }
+  .cur { text-align: left; font: inherit; color: inherit; background: none; border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 16px; cursor: pointer; position: relative; margin: 0 -1px -1px 0; }
+  .cur:hover { background: var(--paper-2); }
+  .cur[aria-pressed="true"] { background: var(--paper-2); box-shadow: inset 0 -3px 0 var(--marker); }
+  .cur .code { font-weight: 650; }
+  .cur .rate { font-family: var(--display); font-size: 1.5rem; font-weight: 650; letter-spacing: -0.02em; line-height: 1.2; }
+  .cur .chg { font-size: 0.86rem; }
+  .cur svg { display: block; margin-top: 6px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; }
+  .seg button { font: 500 0.88rem var(--body); background: var(--surface); color: var(--ink-2); border: 0; border-left: 1px solid var(--line); padding: 6px 12px; cursor: pointer; }
+  .seg button:first-child { border-left: 0; }
+  .seg button[aria-pressed="true"] { background: var(--deep); color: var(--deep-ink); }
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 14px; border-top: 1px solid var(--line); }
+  .kpis div { padding: 12px 14px 0 0; }
+  .kpis dt { font-size: 0.82rem; color: var(--ink-3); }
+  .kpis dd { margin: 0; font-weight: 600; }
+  @media (max-width: 600px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .empty { padding: 34px 24px; text-align: left; }
+  .flow { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; counter-reset: f; border: 1px solid var(--line); border-radius: var(--radius-l); overflow: hidden; background: var(--surface); }
+  .flow li { padding: 16px; border-left: 1px solid var(--line); counter-increment: f; position: relative; }
+  .flow li:first-child { border-left: 0; }
+  .flow li::before { content: counter(f); display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--deep); color: var(--deep-ink); font-size: 0.8rem; font-weight: 600; margin-bottom: 10px; }
+  .flow b { display: block; margin-bottom: 4px; }
+  .flow span.d { color: var(--ink-2); font-size: 0.9rem; }
+  @media (max-width: 700px) { .flow li { border-left: 0; border-top: 1px solid var(--line); } .flow li:first-child { border-top: 0; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="pl">Przejdź do treści</span><span lang="en">Skip to content</span></a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../"><b aria-hidden="true"></b>Kornel Dybalski</a>
+    <nav class="nav" aria-label="Menu">
+      <a href="../../#projekty"><span lang="pl">Projekty</span><span lang="en">Projects</span></a>
+      <a href="../../#doswiadczenie"><span lang="pl">Doświadczenie</span><span lang="en">Experience</span></a>
+      <a href="../../#kontakt"><span lang="pl">Kontakt</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Język / Language">
+      <button type="button" data-lang="pl" aria-pressed="true">PL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="crumb"><a href="../../#projekty"><span lang="pl">Projekty</span><span lang="en">Projects</span></a> / <span lang="pl">Automatyzacja</span><span lang="en">Automation</span></div>
+  <section class="phero">
+    <h1><span lang="pl">Raport kursów walut, który robi się sam</span><span lang="en">An FX report that builds itself</span></h1>
+    <p class="lede"><span lang="pl">W wielu firmach ktoś codziennie wchodzi na stronę NBP, kopiuje kursy do Excela i wysyła je dalej. Zautomatyzowałem ten proces od początku do końca: dane pobierają się same, historia rośnie, dashboard poniżej się aktualizuje, a przy dużym ruchu kursu pojawia się alert.</span><span lang="en">In many companies someone visits the NBP website every day, copies rates into Excel and forwards them. I automated the whole process end to end: data is fetched automatically, history builds up, the dashboard below refreshes, and a big move in a rate raises an alert.</span></p>
+    <dl class="facts">
+      <div><dt><span lang="pl">Harmonogram</span><span lang="en">Schedule</span></dt><dd><span lang="pl">Dni robocze, 11:40 UTC</span><span lang="en">Working days, 11:40 UTC</span></dd></div>
+      <div><dt><span lang="pl">Źródło</span><span lang="en">Source</span></dt><dd><span lang="pl">API NBP, tabela A</span><span lang="en">NBP API, table A</span></dd></div>
+      <div><dt><span lang="pl">Narzędzia</span><span lang="en">Tools</span></dt><dd>Python, GitHub Actions, pytest</dd></div>
+      <div><dt><span lang="pl">Koszt utrzymania</span><span lang="en">Running cost</span></dt><dd>0 zł</dd></div>
+    </dl>
+  </section>
+
+  <section id="dash">
+    <div class="runline" id="runline"></div>
+    <div id="dash-body">
+      <div class="cur-grid" id="cards" role="group" aria-label="Waluty / Currencies"></div>
+      <div class="panel" style="margin-top:20px">
+        <div class="toolbar">
+          <div><div class="chart-title" style="font-weight:600" id="chart-title"></div><div class="small muted"><span lang="pl">Kurs średni NBP w złotych</span><span lang="en">NBP mid rate in PLN</span></div></div>
+          <div class="seg" role="group" aria-label="Zakres / Range" id="range">
+            <button type="button" data-r="30">1M</button><button type="button" data-r="90" aria-pressed="true">3M</button><button type="button" data-r="182">6M</button><button type="button" data-r="365"><span lang="pl">1R</span><span lang="en">1Y</span></button>
+          </div>
+        </div>
+        <svg id="chart" role="img"></svg>
+        <dl class="kpis" id="kpis"></dl>
+        <details class="tableview"><summary><span lang="pl">Pokaż dane w tabeli</span><span lang="en">Show data as a table</span></summary><div class="table-scroll" id="table"></div></details>
+      </div>
+    </div>
+    <div class="panel empty" id="empty" hidden>
+      <h3><span lang="pl">Dane pojawią się po pierwszym uruchomieniu</span><span lang="en">Data appears after the first run</span></h3>
+      <p class="muted" style="margin-top:8px"><span lang="pl">Workflow startuje automatycznie w najbliższy dzień roboczy o 11:40 UTC. Można go też uruchomić ręcznie: GitHub → Actions → nbp-rates → Run workflow. Przy pierwszym przebiegu skrypt pobiera rok historii.</span><span lang="en">The workflow starts automatically on the next working day at 11:40 UTC. It can also be run manually: GitHub → Actions → nbp-rates → Run workflow. The first run back-fills a year of history.</span></p>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2><span lang="pl">Jak to działa</span><span lang="en">How it works</span></h2>
+  </section>
+  <ol class="flow">
+    <li><b><span lang="pl">Harmonogram</span><span lang="en">Schedule</span></b><span class="d"><span lang="pl">GitHub Actions uruchamia workflow w każdy dzień roboczy.</span><span lang="en">GitHub Actions starts the workflow every working day.</span></span></li>
+    <li><b><span lang="pl">Testy</span><span lang="en">Tests</span></b><span class="d"><span lang="pl">pytest sprawdza logikę na danych testowych, zanim cokolwiek się zapisze.</span><span lang="en">pytest checks the logic on test data before anything is saved.</span></span></li>
+    <li><b><span lang="pl">Pobranie</span><span lang="en">Fetch</span></b><span class="d"><span lang="pl">Tylko brakujące dni z API NBP, w paczkach po 90 dni.</span><span lang="en">Only the missing days from the NBP API, in 90-day chunks.</span></span></li>
+    <li><b>KPI</b><span class="d"><span lang="pl">Zmiana d/d, 7 i 30 dni, zakres 90 dni, zmienność.</span><span lang="en">Day/day, 7- and 30-day change, 90-day range, volatility.</span></span></li>
+    <li><b><span lang="pl">Publikacja</span><span lang="en">Publish</span></b><span class="d"><span lang="pl">Commit danych i raportu Markdown – strona odświeża się sama.</span><span lang="en">Data and a Markdown report are committed – the site refreshes itself.</span></span></li>
+    <li><b><span lang="pl">Alert</span><span lang="en">Alert</span></b><span class="d"><span lang="pl">Ruch powyżej 1% w sesji zakłada zgłoszenie (Issue) z podsumowaniem.</span><span lang="en">A move above 1% in one session opens an Issue with a summary.</span></span></li>
+  </ol>
+
+  <section class="prose">
+    <h2><span lang="pl">Dlaczego tak, a nie inaczej</span><span lang="en">Design choices</span></h2>
+    <ul>
+      <li><span lang="pl"><strong>Bez serwera i bez kosztów.</strong> Harmonogram, obliczenia i hosting robi GitHub. Nie ma nic do utrzymywania.</span><span lang="en"><strong>No server, no cost.</strong> GitHub handles the schedule, compute and hosting. There's nothing to maintain.</span></li>
+      <li><span lang="pl"><strong>Idempotentność.</strong> Ponowne uruchomienie tego samego dnia niczego nie psuje ani nie dubluje – skrypt dociąga tylko brakujące notowania.</span><span lang="en"><strong>Idempotent.</strong> Running it twice on the same day doesn't break or duplicate anything – the script only fetches missing quotes.</span></li>
+      <li><span lang="pl"><strong>Historia w repozytorium.</strong> Każdy dzień to commit, więc widać dokładnie, kiedy i jakie dane się zmieniły.</span><span lang="en"><strong>History in the repo.</strong> Every day is a commit, so it's clear exactly when and what data changed.</span></li>
+      <li><span lang="pl"><strong>Alert tam, gdzie zespół już pracuje.</strong> Zgłoszenie na GitHubie wysyła powiadomienie e-mail bez konfigurowania skrzynki czy haseł. W firmie ten sam krok może wysyłać wiadomość na Teams lub Slacka.</span><span lang="en"><strong>Alerts where the team already works.</strong> A GitHub Issue sends an email notification with no mailbox or password setup. In a company the same step could post to Teams or Slack.</span></li>
+    </ul>
+    <p><span lang="pl">Kod:</span><span lang="en">Code:</span> <a href="https://github.com/KornelDyb/KornelDyb.github.io/blob/main/projects/nbp-rates/automation/fetch_rates.py">fetch_rates.py</a>, <a href="https://github.com/KornelDyb/KornelDyb.github.io/blob/main/.github/workflows/nbp-rates.yml">nbp-rates.yml</a>, <a href="https://github.com/KornelDyb/KornelDyb.github.io/blob/main/projects/nbp-rates/REPORT.md"><span lang="pl">najnowszy raport</span><span lang="en">latest report</span></a>.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> Kornel Dybalski</span>
+    <span><span lang="pl">Źródło danych: Narodowy Bank Polski, tabela A kursów średnich.</span><span lang="en">Data: National Bank of Poland, table A mid rates.</span></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="rates.js"></script>
+</body>
+</html>

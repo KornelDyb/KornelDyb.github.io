@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pl" data-lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ceny mieszkań w Warszawie – analiza | Kornel Dybalski</title>
+<meta name="title-pl" content="Ceny mieszkań w Warszawie – analiza | Kornel Dybalski">
+<meta name="title-en" content="Warsaw apartment prices – analysis | Kornel Dybalski">
+<meta name="description" content="Analiza 8 665 ogłoszeń mieszkań w Warszawie: dzielnice, odległość od centrum, wiek budynku, metraż i model wyceny.">
+<link rel="icon" href="../../assets/favicon.ico">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+  /* sequential blue ramp (light → dark) for the map */
+  :root { --q1:#cde2fb; --q2:#9ec5f4; --q3:#6da7ec; --q4:#3987e5; --q5:#256abf; --q6:#104281; --bar:#2a78d6; --band: color-mix(in srgb, var(--bar) 18%, transparent); --grid: var(--line); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bar:#3987e5; } }
+  :root[data-theme="dark"] { --bar:#3987e5; }
+  .grid2 { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; margin-top: 22px; }
+  @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+  svg text { fill: var(--ink-2); font: 12px var(--body); }
+  svg .axis { stroke: var(--grid); }
+  .map path { stroke: var(--surface); stroke-width: 1.5; cursor: pointer; }
+  .map path:hover, .map path.hl { stroke: var(--ink); stroke-width: 2; }
+  .legend-ramp { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--ink-2); margin-top: 8px; }
+  .legend-ramp span.sw { display: inline-flex; }
+  .legend-ramp span.sw i { width: 22px; height: 10px; display: block; }
+  .rank { width: 100%; }
+  .rank .row { cursor: default; }
+  .rank .row:hover rect.hit { fill: var(--paper-2); }
+  .steps { list-style: none; padding: 0; margin: 18px 0 0; counter-reset: s; }
+  .steps li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); counter-increment: s; }
+  .steps li::before { content: counter(s); font-weight: 600; color: var(--ink-3); }
+  .steps .n { font-weight: 600; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--radius-l); overflow: hidden; background: var(--surface); margin-top: 18px; }
+  .tiles > div { padding: 18px 20px; border-left: 1px solid var(--line); }
+  .tiles > div:first-child { border-left: 0; }
+  .tiles .city { font-weight: 600; }
+  .tiles .big { font-family: var(--display); font-size: 2rem; font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; margin: 4px 0; }
+  @media (max-width: 600px) { .tiles { grid-template-columns: 1fr; } .tiles > div { border-left: 0; border-top: 1px solid var(--line); } .tiles > div:first-child { border-top: 0; } }
+  /* estimator */
+  .est { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 22px; }
+  @media (max-width: 760px) { .est { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 16px; }
+  .field label { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+  .field label output { font-weight: 500; color: var(--ink-2); }
+  select, input[type=number] { width: 100%; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--paper); color: var(--ink); }
+  input[type=range] { width: 100%; accent-color: var(--pine); }
+  .result { background: var(--deep); color: var(--deep-ink); border-radius: var(--radius-l); padding: 24px; align-self: start; }
+  .result .lbl { font-size: 0.88rem; opacity: .8; }
+  .result .price { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 4px 0 2px; }
+  .result .ppm { font-size: 1.05rem; margin-bottom: 16px; }
+  .result ul { list-style: none; padding: 0; margin: 0; font-size: 0.92rem; border-top: 1px solid color-mix(in srgb, var(--deep-ink) 25%, transparent); }
+  .result li { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--deep-ink) 15%, transparent); }
+  .result .note { font-size: 0.82rem; opacity: .75; margin-top: 12px; }
+  .chart-title { font-weight: 600; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="pl">Przejdź do treści</span><span lang="en">Skip to content</span></a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../"><b aria-hidden="true"></b>Kornel Dybalski</a>
+    <nav class="nav" aria-label="Menu">
+      <a href="../../#projekty"><span lang="pl">Projekty</span><span lang="en">Projects</span></a>
+      <a href="../../#doswiadczenie"><span lang="pl">Doświadczenie</span><span lang="en">Experience</span></a>
+      <a href="../../#kontakt"><span lang="pl">Kontakt</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Język / Language">
+      <button type="button" data-lang="pl" aria-pressed="true">PL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="crumb"><a href="../../#projekty"><span lang="pl">Projekty</span><span lang="en">Projects</span></a> / <span lang="pl">Analiza danych</span><span lang="en">Data analysis</span></div>
+  <section class="phero">
+    <h1><span lang="pl">Co naprawdę kształtuje ceny mieszkań w Warszawie</span><span lang="en">What really drives apartment prices in Warsaw</span></h1>
+    <p class="lede"><span lang="pl">Dzielnica, odległość od centrum, rok budowy, metraż, piętro. Przeanalizowałem 8 665 ogłoszeń sprzedaży, żeby sprawdzić, ile każdy z tych czynników jest wart w złotówkach za metr – i zbudowałem z tego prosty kalkulator.</span><span lang="en">District, distance to the centre, construction year, size, floor. I analysed 8,665 sale listings to find out what each of these factors is worth in złoty per square metre – and turned it into a simple estimator.</span></p>
+    <dl class="facts">
+      <div><dt><span lang="pl">Dane</span><span lang="en">Data</span></dt><dd><span lang="pl">Ogłoszenia z ok. 2021 r.</span><span lang="en">Listings from c. 2021</span></dd></div>
+      <div><dt><span lang="pl">Próba</span><span lang="en">Sample</span></dt><dd><span lang="pl">8 665 mieszkań, 18 dzielnic</span><span lang="en">8,665 flats, 18 districts</span></dd></div>
+      <div><dt><span lang="pl">Narzędzia</span><span lang="en">Tools</span></dt><dd>Python, pandas, shapely, numpy</dd></div>
+      <div><dt><span lang="pl">Kod</span><span lang="en">Code</span></dt><dd><a href="https://github.com/KornelDyb/KornelDyb.github.io/tree/main/projects/warsaw-housing/analysis">pipeline.py</a></dd></div>
+    </dl>
+  </section>
+
+  <div class="prose">
+    <h2><span lang="pl">W skrócie</span><span lang="en">Key findings</span></h2>
+    <ul>
+      <li><span lang="pl"><strong>Rozpiętość między dzielnicami sięga 48%.</strong> Mediana na Śródmieściu to 13 750 zł/m², w Rembertowie 7 150 zł/m².</span><span lang="en"><strong>The gap between districts reaches 48%.</strong> The median in Śródmieście is 13,750 zł/m², in Rembertów 7,150 zł/m².</span></li>
+      <li><span lang="pl"><strong>Każdy kilometr od centrum kosztuje.</strong> W promieniu 2 km mediana wynosi 13 794 zł/m², 10–12 km dalej już 9 314 zł/m² (−32%).</span><span lang="en"><strong>Every kilometre from the centre costs.</strong> Within 2 km the median is 13,794 zł/m²; at 10–12 km it drops to 9,314 zł/m² (−32%).</span></li>
+      <li><span lang="pl"><strong>Nowe nie znaczy droższe – na pierwszy rzut oka.</strong> Mieszkania z 2019+ mają niższą medianę niż te z lat 2010–2018, bo nowa podaż powstaje głównie na obrzeżach (np. Białołęka: 52% ofert to nowe budynki). Po uwzględnieniu dzielnicy nowe budynki są o ok. 7% droższe niż z czasów PRL.</span><span lang="en"><strong>New isn't more expensive – at first glance.</strong> Flats built 2019+ have a lower median than 2010–2018, because new supply is mostly on the outskirts (e.g. Białołęka: 52% of listings are new builds). Once district is controlled for, new builds are about 7% pricier than communist-era blocks.</span></li>
+      <li><span lang="pl"><strong>Małe mieszkania są najdroższe za metr.</strong> Kawalerki poniżej 35 m² kosztują o 24% więcej za m² niż mieszkania 50–70 m² – to efekt popytu inwestycyjnego na najem.</span><span lang="en"><strong>Small flats are the most expensive per m².</strong> Studios under 35 m² cost 24% more per m² than 50–70 m² flats – a sign of investor demand for rentals.</span></li>
+    </ul>
+  </div>
+
+  <section>
+    <div class="prose"><h2><span lang="pl">Dzielnice</span><span lang="en">Districts</span></h2>
+      <p class="muted"><span lang="pl">Mediana ceny za m² w ofertach. Najedź na dzielnicę na mapie lub na liście, żeby zobaczyć szczegóły.</span><span lang="en">Median asking price per m². Hover a district on the map or in the list for details.</span></p></div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="chart-title"><span lang="pl">Mediana ceny za m² wg dzielnicy</span><span lang="en">Median price per m² by district</span></div>
+        <svg id="map" class="map" role="img" aria-label="Mapa dzielnic Warszawy"></svg>
+        <div class="legend-ramp" id="map-legend"></div>
+      </div>
+      <div class="panel">
+        <div class="chart-title"><span lang="pl">Ranking: mediana i rozstęp międzykwartylowy</span><span lang="en">Ranking: median and interquartile range</span></div>
+        <div class="sub"><span lang="pl">Kreska pokazuje środkowe 50% ofert, kropka – medianę.</span><span lang="en">The line shows the middle 50% of listings, the dot the median.</span></div>
+        <svg id="rank" class="rank" role="img"></svg>
+      </div>
+    </div>
+    <p class="callout small muted"><span lang="pl">Uwaga na małe próby: Wesoła (74 oferty) ma bardzo szeroki rozstęp, a w Rembertowie aż 82% ofert to nowe budynki – prawdopodobnie jedna duża inwestycja zaniża medianę.</span><span lang="en">Watch the small samples: Wesoła (74 listings) has a very wide range, and in Rembertów 82% of listings are new builds – likely one large development pulling the median down.</span></p>
+  </section>
+
+  <section>
+    <div class="prose"><h2><span lang="pl">Odległość od centrum</span><span lang="en">Distance to the centre</span></h2>
+      <p class="muted"><span lang="pl">Każda kropka to jedno ogłoszenie (losowa próbka 1 500), linia to mediana w przedziale odległości, pasmo – środkowe 50%. Centrum = Pałac Kultury.</span><span lang="en">Each dot is one listing (random sample of 1,500), the line is the median per distance band, the band the middle 50%. Centre = Palace of Culture.</span></p></div>
+    <div class="panel"><svg id="dist" role="img"></svg></div>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="panel">
+        <div class="chart-title"><span lang="pl">Rok budowy</span><span lang="en">Construction year</span></div>
+        <div class="sub"><span lang="pl">Mediana ceny za m²</span><span lang="en">Median price per m²</span></div>
+        <svg id="era" role="img"></svg>
+      </div>
+      <div class="panel">
+        <div class="chart-title"><span lang="pl">Metraż</span><span lang="en">Size</span></div>
+        <div class="sub"><span lang="pl">Mediana ceny za m²</span><span lang="en">Median price per m²</span></div>
+        <svg id="size" role="img"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose"><h2><span lang="pl">Warszawa na tle Krakowa i Poznania</span><span lang="en">Warsaw vs Kraków and Poznań</span></h2></div>
+    <div class="tiles" id="cities"></div>
+  </section>
+
+  <section id="kalkulator">
+    <div class="prose">
+      <h2><span lang="pl">Kalkulator wyceny</span><span lang="en">Price estimator</span></h2>
+      <p class="muted"><span lang="pl">Model regresji liniowej na logarytmie ceny za m² (dzielnica, odległość, epoka budowy, metraż, piętro). Wyjaśnia ok. 49% zmienności cen, średni błąd ±13%. Pokazuje ceny ofertowe z 2021 roku – to narzędzie do porównań, nie aktualna wycena.</span><span lang="en">A linear regression on log price per m² (district, distance, building era, size, floor). It explains about 49% of price variation, with an average error of ±13%. It reflects 2021 asking prices – a comparison tool, not a current valuation.</span></p>
+    </div>
+    <div class="est panel">
+      <form id="est-form" onsubmit="return false">
+        <div class="field"><label for="f-d"><span lang="pl">Dzielnica</span><span lang="en">District</span></label><select id="f-d"></select></div>
+        <div class="field"><label for="f-km"><span><span lang="pl">Odległość od centrum</span><span lang="en">Distance to centre</span></span><output id="o-km"></output></label><input id="f-km" type="range" min="0.5" max="20" step="0.5"></div>
+        <div class="field"><label for="f-sq"><span><span lang="pl">Metraż</span><span lang="en">Size</span></span><output id="o-sq"></output></label><input id="f-sq" type="range" min="18" max="150" step="1" value="52"></div>
+        <div class="field"><label for="f-era"><span lang="pl">Rok budowy</span><span lang="en">Construction year</span></label><select id="f-era"></select></div>
+        <div class="field"><label for="f-fl"><span lang="pl">Piętro</span><span lang="en">Floor</span></label><select id="f-fl"></select></div>
+      </form>
+      <div class="result" aria-live="polite">
+        <div class="lbl"><span lang="pl">Szacowana cena ofertowa (2021)</span><span lang="en">Estimated asking price (2021)</span></div>
+        <div class="price" id="r-price">–</div>
+        <div class="ppm" id="r-ppm"></div>
+        <ul id="r-parts"></ul>
+        <div class="note" id="r-range"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2><span lang="pl">Jak to zrobiłem</span><span lang="en">How I built it</span></h2>
+    <p><span lang="pl">Surowe dane pochodzą z publicznego zbioru „House prices in Poland” (Kaggle) – ogłoszeń zebranych z portali w Warszawie, Krakowie i Poznaniu. Cały proces jest w jednym skrypcie, który można uruchomić ponownie na nowszych danych:</span><span lang="en">The raw data is the public “House prices in Poland” dataset (Kaggle) – listings scraped from portals in Warsaw, Kraków and Poznań. The whole process lives in one script that can be re-run on newer data:</span></p>
+    <ol class="steps" id="steps"></ol>
+    <p style="margin-top:18px"><span lang="pl">Przypisanie do dzielnic robię testem „punkt w wielokącie” na granicach z pliku GeoJSON, a nie na podstawie adresu z ogłoszenia – adresy są niespójne, współrzędne nie. Model to zwykła regresja metodą najmniejszych kwadratów, bo jej współczynniki da się wprost przeczytać jako premie procentowe.</span><span lang="en">District matching uses a point-in-polygon test against GeoJSON boundaries rather than the listing's address – addresses are inconsistent, coordinates aren't. The model is plain least-squares regression because its coefficients read directly as percentage premiums.</span></p>
+    <pre><code>python analysis/pipeline.py --raw data/raw/Houses.csv \
+  --geo data/raw/warszawa-dzielnice.geojson</code></pre>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> Kornel Dybalski</span>
+    <span><span lang="pl">Źródło danych: Kaggle „House prices in Poland”; granice dzielnic: GeoJSON (CARTO).</span><span lang="en">Data: Kaggle “House prices in Poland”; district boundaries: GeoJSON (CARTO).</span></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="housing.js"></script>
+</body>
+</html>
