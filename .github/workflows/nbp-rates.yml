@@ -1,9 +1,14 @@
 name: nbp-rates
 
-# Every working day at 11:40 UTC (12:40/13:40 in Warsaw) – NBP publishes table A around 11:45–12:15 local time.
+# Working days, three attempts: 11:40, 13:40 and 15:40 UTC (12:40/14:40/16:40 in Warsaw in winter).
+# NBP publishes table A around 11:45–12:15 Warsaw time. GitHub often starts scheduled runs hours late,
+# and a Pages publish can occasionally time out; extra attempts get the rate on the site sooner and
+# republish if an earlier publish failed. Re-runs are safe: the script only fetches missing days.
 on:
   schedule:
     - cron: "40 11 * * 1-5"
+    - cron: "40 13 * * 1-5"
+    - cron: "40 15 * * 1-5"
   workflow_dispatch: {}
   # also run right after the automation code changes (e.g. the very first push)
   push:
