@@ -1,6 +1,6 @@
 # Raport kursów walut NBP
 
-_Wygenerowano automatycznie: 2026-11-06 20:04 (UTC) · źródło: NBP, tabela A_
+_Wygenerowano automatycznie: 2026-11-06 21:02 (UTC) · źródło: NBP, tabela A_
 
 | Waluta | Kurs (PLN) | d/d | 7 dni | 30 dni | Zakres 90 dni | Zmienność 30d (ann.) |
 |---|---:|---:|---:|---:|---:|---:|
