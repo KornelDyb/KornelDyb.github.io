@@ -177,6 +177,7 @@ P_L = {  # labels used only in the printable CVs
     "outside": ("Zainteresowania", "Interests"),
     "extra": ("Dodatkowe", "Other"),
     "qr": ("Moje projekty: zeskanuj albo wejdź", "My projects: scan or visit"),
+    "more_courses": ("Więcej kursów na moim LinkedInie", "More courses on my LinkedIn"),
 }
 
 
@@ -249,8 +250,11 @@ h1 { font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 29pt; marg
 .st { flex: 1; background: #fff; border-radius: 8px; padding: 2.6mm 3.4mm; box-shadow: 0 3px 10px rgba(18,52,59,.14); border-top: 3px solid #2a9d8f; }
 .st b { display: block; font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 15.5pt; color: #12343b; line-height: 1.05; }
 .st span { font-size: 7.2pt; color: #4a6268; }
-.bd { display: flex; gap: 7mm; padding: 5mm 11mm 0; flex: 1; }
-.mn { flex: 1.62; } .sd { flex: 1; display: flex; flex-direction: column; }
+.bd { display: flex; gap: 7mm; padding: 5mm 11mm 0; align-items: stretch; }
+.mn { flex: 1.62; } .sd { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.sd .sec:last-child { margin-bottom: 0; }
+.mn .sec:last-child { margin-bottom: 0; }
+.more { display: block; font-size: 7.4pt; color: #1f7a74; margin-top: 1.2mm; }
 h2 { font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 11.3pt; color: #12343b; margin: 0 0 2.3mm; display: flex; align-items: center; gap: 6px; }
 h2:after { content: ""; flex: 1; height: 1px; background: #d3e2e1; }
 .sec { margin-bottom: 4mm; }
@@ -274,9 +278,9 @@ ul { margin: 0; padding-left: 12px; } li { margin: 1.1px 0; } li::marker { color
 .chip { background: #f3f8f8; border: 1px solid #cfe1df; border-radius: 20px; padding: .45mm 2.2mm; font-size: 7.4pt; color: #24414a; }
 .pj { margin-bottom: 1.2mm; color: #33474d; } .pj b { color: #12343b; }
 .badge { font-size: 6.4pt; font-weight: 600; background: #7fd1c3; color: #0f2a30; border-radius: 10px; padding: .2mm 1.6mm; margin-left: 3px; vertical-align: 1px; }
-.out { background: #eef6f5; border-left: 3px solid #2a9d8f; color: #33474d; border-radius: 0 8px 8px 0; padding: 2.6mm 3.3mm; margin-top: 1mm; margin-bottom: 0; }
+.out { background: #eef6f5; border-left: 3px solid #2a9d8f; color: #33474d; border-radius: 0 8px 8px 0; padding: 2.6mm 3.3mm; margin-bottom: 0; }
 .out h2:after { background: #cfe1df; }
-.ft { padding: 3mm 11mm 5mm; font-size: 6.1pt; color: #86969a; }
+.ft { margin-top: auto; padding: 3mm 11mm 5mm; font-size: 6.1pt; color: #86969a; }
 """
 
 
@@ -317,7 +321,7 @@ def render_design(cv: dict, lang: str, photo: bool | None = None) -> str:
 </div><div class=sd>
 <div class=sec><h2>{pl_('bring', lang)}</h2><ol class=bring>{bring}</ol></div>
 <div class=sec><h2>{pl_('tools', lang)}</h2><div class=chips>{chips}</div></div>
-<div class=sec><h2>{lab('courses_udemy', lang)}</h2><ul>{courses}</ul></div>
+<div class=sec><h2>{lab('courses_udemy', lang)}</h2><ul>{courses}</ul><a class=more href="https://{e(p['linkedin'])}">{pl_('more_courses', lang)}</a></div>
 <div class=sec><h2>{lab('languages', lang)}</h2>{langs}<br>{t(cv['extra'][0])}</div>
 <div class="sec out"><h2>{pl_('outside', lang)}</h2>{t(cv['outside'])}</div>
 </div></div>
