@@ -519,13 +519,13 @@
       "en": "Driving licence: category B"
     },
     {
-      "pl": "Zainteresowania: siłownia, piłka nożna",
-      "en": "Interests: gym, football"
+      "pl": "Zainteresowania: siłownia, piłka nożna, szachy, podróże, nowe technologie",
+      "en": "Interests: gym, football, chess, travel, new technology"
     }
   ],
   "outside": {
-    "pl": "Siłownia i piłka nożna. Lubię regularny trening i grę w drużynie.",
-    "en": "Gym and football. I enjoy regular training and playing in a team."
+    "pl": "Siłownia, piłka nożna, szachy, podróże i nowe technologie.",
+    "en": "Gym, football, chess, travel and new technology."
   },
   "consent": {
     "pl": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez pracodawcę, do którego aplikuję, na potrzeby obecnego procesu rekrutacji. Wyrażam również zgodę na przetwarzanie moich danych w przyszłych procesach rekrutacyjnych.",
