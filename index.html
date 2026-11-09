@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kornel Dybalski – Data Analyst, CRM i automatyzacje</title>
-<meta name="title-pl" content="Kornel Dybalski – Data Analyst, CRM i automatyzacje">
-<meta name="title-en" content="Kornel Dybalski – Data Analyst, CRM & automation">
-<meta name="description" content="Kornel Dybalski – Data Analyst, CRM i automatyzacja. SQL, Power BI, Python, n8n. Warszawa. Portfolio projektów i CV do pobrania.">
-<meta property="og:title" content="Kornel Dybalski – CRM, automatyzacje, dane">
-<meta property="og:description" content="CRM, automatyzacja procesów, rozwój biznesu i analityka. Projekty: analiza rynku mieszkań, automatyczny raport kursów NBP, lead scoring.">
+<title>Kornel Dybalski – Specjalista CRM i Sales Operations</title>
+<meta name="title-pl" content="Kornel Dybalski – Specjalista CRM i Sales Operations">
+<meta name="title-en" content="Kornel Dybalski – CRM Specialist &amp; Sales Operations">
+<meta name="description" content="Kornel Dybalski – specjalista CRM i Sales Operations. Administracja CRM, Salesforce, automatyzacje (n8n, Make), Power BI. Warszawa. Portfolio projektów i CV do pobrania.">
+<meta property="og:title" content="Kornel Dybalski – CRM i Sales Operations">
+<meta property="og:description" content="Administracja CRM, procesy sprzedaży i automatyzacje. Projekty: lejek leadów, lead scoring, automatyczny raport kursów NBP, analiza rynku mieszkań.">
 <meta property="og:image" content="https://korneldyb.github.io/assets/profile.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon.ico" sizes="48x48">
@@ -40,6 +40,18 @@
   .pillars p { color: var(--ink-2); font-size: 0.97rem; }
   @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } .pillars div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); } }
 
+  /* ---------- case study ---------- */
+  .case-sec { padding-top: 56px; }
+  .casecard { background: var(--deep); color: var(--deep-ink); border-radius: var(--radius-l); padding: clamp(26px, 4.5vw, 48px); }
+  .casecard .kind { color: color-mix(in srgb, var(--marker) 60%, #fff); font-weight: 600; font-size: 0.92rem; margin-bottom: 8px; }
+  .casecard h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 26px; }
+  .casecard .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid color-mix(in srgb, var(--deep-ink) 30%, transparent); }
+  .casecard .steps > div { padding: 18px 22px 0 0; }
+  .casecard .steps > div + div { padding-left: 22px; border-left: 1px solid color-mix(in srgb, var(--deep-ink) 22%, transparent); }
+  .casecard h3 { font-size: 1.05rem; margin-bottom: 8px; color: color-mix(in srgb, var(--marker) 55%, #fff); }
+  .casecard p { color: color-mix(in srgb, var(--deep-ink) 86%, var(--deep)); margin: 0; }
+  @media (max-width: 760px) { .casecard .steps { grid-template-columns: 1fr; } .casecard .steps > div + div { padding-left: 0; border-left: 0; border-top: 1px solid color-mix(in srgb, var(--deep-ink) 22%, transparent); margin-top: 16px; } }
+  .proj .wip { display: inline-block; vertical-align: middle; font-family: var(--body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0; background: var(--paper-2); color: var(--pine); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; margin-left: 6px; }
   /* ---------- projects ---------- */
   .proj { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; padding: 34px 0; border-top: 1px solid var(--line); align-items: start; }
   .proj:last-child { border-bottom: 1px solid var(--line); }
@@ -73,7 +85,8 @@
   .cvstats dt { color: var(--pine); font-family: var(--display); font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.05; }
   .cvstats dd { margin: 4px 0 0; color: var(--ink-2); font-size: 0.92rem; }
   @media (max-width: 640px) { .cvstats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; } .cvstats div:nth-child(3) { padding-left: 0; border-left: 0; } }
-  .skills { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .skills { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  @media (max-width: 1100px) { .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
   .cvextra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
@@ -128,16 +141,16 @@
     <div class="wrap">
       <div>
         <div class="status"><i aria-hidden="true"></i>
-          <span lang="pl">Data Analyst · CRM &amp; Automation – szukam nowej roli</span>
-          <span lang="en">Data Analyst · CRM &amp; Automation – open to new roles</span>
+          <span lang="pl">Specjalista CRM · Sales Operations – dostępny od zaraz</span>
+          <span lang="en">CRM Specialist · Sales Operations – available immediately</span>
         </div>
         <h1>
           <span lang="pl">Sprzedaż, która działa jak dobrze ustawiony system.</span>
           <span lang="en">Sales that runs like a well-tuned system.</span>
         </h1>
         <p class="lede">
-          <span lang="pl">Odpowiadam na pytania biznesowe w SQL i Power BI, rozwijam CRM-y i zamieniam powtarzalną pracę w automaty w Pythonie, n8n i przez API. Ostatnio rozwijałem CRM dla 200–300 handlowców w Respect Energy.</span>
-          <span lang="en">I answer business questions with SQL and Power BI, develop CRM systems and turn repetitive work into automations with Python, n8n and APIs. Most recently I ran the CRM for 200–300 sales reps at Respect Energy.</span>
+          <span lang="pl">Porządkuję CRM i procesy sprzedaży tak, żeby handlowcy sprzedawali, a nie przepisywali maile. Ostatnio przez ponad dwa lata odpowiadałem za CRM dla ponad 200 handlowców w Respect Energy: konfigurację, zmiany, szkolenia i raporty.</span>
+          <span lang="en">I tidy up CRMs and sales processes so reps can sell instead of retyping emails. Most recently I spent over two years running the CRM for 200+ sales reps at Respect Energy: configuration, changes, training and reporting.</span>
         </p>
         <div class="cta">
           <a class="btn primary" href="#projekty"><span lang="pl">Zobacz projekty</span><span lang="en">See projects</span></a>
@@ -157,23 +170,74 @@
         <p><span lang="pl">Lejki sprzedaży, uprawnienia, workflow, change requesty od wymagań po testy UAT i szkolenia użytkowników.</span><span lang="en">Sales pipelines, permissions, workflows, change requests from requirements to UAT, and user training.</span></p>
       </div>
       <div>
-        <h3><span lang="pl">Automatyzacje</span><span lang="en">Automation</span></h3>
-        <p><span lang="pl">Procesy, które dzieją się same: ETL z API, cenniki z SQL, raporty wysyłane mailem, alerty.</span><span lang="en">Processes that run on their own: ETL from APIs, price lists from SQL, emailed reports, alerts.</span></p>
+        <h3><span lang="pl">Procesy sprzedaży</span><span lang="en">Sales processes</span></h3>
+        <p><span lang="pl">Wyceny, cenniki i obieg spraw przeniesione z maili do systemu. Automatyzacje workflow w CRM, n8n i Make.</span><span lang="en">Quotes, price lists and handoffs moved from email into the system. Workflow automation in the CRM, n8n and Make.</span></p>
       </div>
       <div>
-        <h3><span lang="pl">Dane i BI</span><span lang="en">Data &amp; BI</span></h3>
-        <p><span lang="pl">SQL na hurtowni Snowflake, dashboardy Power BI, raporty KPI i analizy rentowności dla zarządu.</span><span lang="en">SQL on a Snowflake warehouse, Power BI dashboards, KPI reporting and profitability analysis for the Board.</span></p>
+        <h3><span lang="pl">Raportowanie</span><span lang="en">Reporting</span></h3>
+        <p><span lang="pl">Dashboardy Power BI na danych ze Snowflake (SQL) i raporty KPI dla sprzedaży i zarządu, które wysyłają się same.</span><span lang="en">Power BI dashboards on Snowflake data (SQL) and KPI reports for sales and management that send themselves.</span></p>
       </div>
     </div>
   </div>
 
+  <section class="block case-sec" id="case">
+    <div class="wrap">
+      <div class="casecard">
+        <div class="kind"><span lang="pl">Case study · Respect Energy</span><span lang="en">Case study · Respect Energy</span></div>
+        <h2><span lang="pl">Wyceny: z maila do CRM</span><span lang="en">Pricing requests: from email to CRM</span></h2>
+        <div class="steps">
+          <div><h3>Problem</h3><p><span lang="pl">Handlowcy zamawiali wyceny mailem, ceny minimalne przepisywano ręcznie, a historia ginęła w skrzynkach.</span><span lang="en">Reps requested quotes by email, minimum prices were retyped by hand and the history got lost in inboxes.</span></p></div>
+          <div><h3><span lang="pl">Co zrobiłem</span><span lang="en">What I did</span></h3><p><span lang="pl">Przeniosłem wyceny do CRM: handlowiec zamawia wycenę zmianą statusu, dział wycen odpowiada w systemie, a powiadomienia idą automatycznie. Ceny minimalne podpiąłem do bazy SQL.</span><span lang="en">Moved quotes into the CRM: a rep requests a quote by changing a status, the pricing team replies in the system and notifications go out automatically. Minimum prices now come from an SQL database.</span></p></div>
+          <div><h3><span lang="pl">Efekt</span><span lang="en">Result</span></h3><p><span lang="pl">Pełna historia każdej wyceny w jednym miejscu, mniej błędów z nieaktualnych cenników i szybsze przygotowanie oferty. Handlowiec dodaje tylko marżę.</span><span lang="en">Full history of every quote in one place, fewer errors from outdated price lists and faster offer preparation. Reps only add their margin.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="block" id="projekty">
     <div class="wrap">
       <div class="block-head">
         <h2><span lang="pl">Projekty</span><span lang="en">Projects</span></h2>
-        <p><span lang="pl">Trzy projekty, każdy z innej strony mojej pracy: analiza danych, automatyzacja procesu i narzędzie dla zespołu sprzedaży. Kod jest otwarty na GitHubie.</span><span lang="en">Three projects, each from a different side of my work: data analysis, process automation and a tool for a sales team. All code is open on GitHub.</span></p>
+        <p><span lang="pl">Cztery projekty wokół sprzedaży i automatyzacji: lejek leadów na mojej stronie, narzędzie dla handlowców, raport, który robi się sam, i analiza danych.</span><span lang="en">Four projects around sales and automation: a lead funnel on my own site, a tool for sales reps, a report that builds itself and a data analysis.</span></p>
       </div>
 
+      <article class="proj">
+        <div>
+          <div class="kind"><span lang="pl">Lejek sprzedaży · Make · HubSpot</span><span lang="en">Sales funnel · Make · HubSpot</span></div>
+          <h3><span lang="pl">Strona AI consulting, która sama obsługuje leady</span><span lang="en">An AI consulting site that handles its own leads</span> <span class="wip"><span lang="pl">w trakcie</span><span lang="en">in progress</span></span></h3>
+          <ul class="tags"><li>Make</li><li>HubSpot</li><li>Gmail</li><li>Google Calendar</li></ul>
+        </div>
+        <div>
+          <div class="figure"><span lang="pl">Formularz → CRM → kalendarz</span><span lang="en">Form → CRM → calendar</span></div>
+          <p class="figure-cap"><span lang="pl">Ktoś rezerwuje rozmowę, a lead sam trafia do HubSpot, dostaje maila z potwierdzeniem, a termin ląduje w kalendarzu.</span><span lang="en">Someone books a call and the lead lands in HubSpot on its own, gets a confirmation email and the meeting goes into the calendar.</span></p>
+          <p><span lang="pl">Moja własna strona dla małych firm usługowych. Ten sam problem, który rozwiązywałem w CRM: żeby żaden lead nie zginął w skrzynce.</span><span lang="en">My own site for small service businesses. The same problem I solved in the CRM: no lead should get lost in an inbox.</span></p>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <div class="kind"><span lang="pl">Narzędzie dla sprzedaży · JavaScript</span><span lang="en">Sales tool · JavaScript</span></div>
+          <h3><a href="projects/lead-scoring/"><span lang="pl">Lead scoring: do kogo zadzwonić najpierw</span><span lang="en">Lead scoring: who to call first</span></a></h3>
+          <ul class="tags"><li>JavaScript</li><li>CSV</li><li><span lang="pl">reguły scoringu</span><span lang="en">scoring rules</span></li><li>CRM</li></ul>
+        </div>
+        <div>
+          <div class="figure"><span lang="pl">Hot · Warm · Cold</span><span lang="en">Hot · Warm · Cold</span></div>
+          <p class="figure-cap"><span lang="pl">Wgraj eksport leadów z CRM i dostosuj wagi – ranking przelicza się na żywo.</span><span lang="en">Drop in a CRM lead export, tune the weights – the ranking recalculates live.</span></p>
+          <p><span lang="pl">Zbudowane na tym, czego nauczyłem się, administrując CRM w firmie energetycznej: handlowcy tracą czas na leady, które nigdy nie kupią.</span><span lang="en">Built on what I learned running a CRM at an energy company: reps lose time on leads that will never buy.</span></p>
+          <div class="links"><a href="projects/lead-scoring/"><span lang="pl">Wypróbuj</span><span lang="en">Try it</span></a><a href="https://github.com/KornelDyb/KornelDyb.github.io/tree/main/projects/lead-scoring">GitHub</a></div>
+        </div>
+      </article>
+      <article class="proj">
+        <div>
+          <div class="kind"><span lang="pl">Automatyzacja · GitHub Actions</span><span lang="en">Automation · GitHub Actions</span></div>
+          <h3><a href="projects/nbp-rates/"><span lang="pl">Raport kursów walut, który robi się sam</span><span lang="en">An FX report that builds itself</span></a></h3>
+          <ul class="tags"><li>Python</li><li>API NBP</li><li>GitHub Actions</li><li>pytest</li><li><span lang="pl">alerty</span><span lang="en">alerts</span></li></ul>
+        </div>
+        <div>
+          <div class="figure"><span lang="pl">0 kliknięć</span><span lang="en">0 clicks</span></div>
+          <p class="figure-cap"><span lang="pl">W każdy dzień roboczy, zaraz po publikacji tabeli NBP, skrypt pobiera kursy 6 walut, liczy zmiany, aktualizuje dashboard i zakłada alert przy dużym ruchu.</span><span lang="en">Every working day, right after NBP publishes its table, a script fetches 6 currencies, computes changes, refreshes the dashboard and raises an alert on big moves.</span></p>
+          <p><span lang="pl">Typowy proces z działu zakupów czy finansów, przeniesiony z Excela do pipeline'u, który działa bez serwera i bez kosztów.</span><span lang="en">A typical procurement or finance chore, moved from Excel into a pipeline that runs with no server and no cost.</span></p>
+          <div class="links"><a href="projects/nbp-rates/"><span lang="pl">Zobacz dashboard</span><span lang="en">See the dashboard</span></a><a href="https://github.com/KornelDyb/KornelDyb.github.io/tree/main/projects/nbp-rates">GitHub</a></div>
+        </div>
+      </article>
       <article class="proj">
         <div>
           <div class="kind"><span lang="pl">Analiza danych · Python</span><span lang="en">Data analysis · Python</span></div>
@@ -188,33 +252,7 @@
         </div>
       </article>
 
-      <article class="proj">
-        <div>
-          <div class="kind"><span lang="pl">Automatyzacja · GitHub Actions</span><span lang="en">Automation · GitHub Actions</span></div>
-          <h3><a href="projects/nbp-rates/"><span lang="pl">Raport kursów walut, który robi się sam</span><span lang="en">An FX report that builds itself</span></a></h3>
-          <ul class="tags"><li>Python</li><li>API NBP</li><li>GitHub Actions</li><li>pytest</li><li><span lang="pl">alerty</span><span lang="en">alerts</span></li></ul>
-        </div>
-        <div>
-          <div class="figure"><span lang="pl">0 kliknięć</span><span lang="en">0 clicks</span></div>
-          <p class="figure-cap"><span lang="pl">W każdy dzień roboczy, zaraz po publikacji tabeli NBP, skrypt pobiera kursy 6 walut, liczy zmiany, aktualizuje dashboard i zakłada alert przy dużym ruchu.</span><span lang="en">Every working day, right after NBP publishes its table, a script fetches 6 currencies, computes changes, refreshes the dashboard and raises an alert on big moves.</span></p>
-          <p><span lang="pl">Typowy proces z działu zakupów czy finansów, przeniesiony z Excela do pipeline'u, który działa bez serwera i bez kosztów.</span><span lang="en">A typical procurement or finance chore, moved from Excel into a pipeline that runs with no server and no cost.</span></p>
-          <div class="links"><a href="projects/nbp-rates/"><span lang="pl">Zobacz dashboard</span><span lang="en">See the dashboard</span></a><a href="https://github.com/KornelDyb/KornelDyb.github.io/tree/main/projects/nbp-rates">GitHub</a></div>
-        </div>
-      </article>
 
-      <article class="proj">
-        <div>
-          <div class="kind"><span lang="pl">Narzędzie dla sprzedaży · JavaScript</span><span lang="en">Sales tool · JavaScript</span></div>
-          <h3><a href="projects/lead-scoring/"><span lang="pl">Lead scoring: do kogo zadzwonić najpierw</span><span lang="en">Lead scoring: who to call first</span></a></h3>
-          <ul class="tags"><li>JavaScript</li><li>CSV</li><li><span lang="pl">reguły scoringu</span><span lang="en">scoring rules</span></li><li>CRM</li></ul>
-        </div>
-        <div>
-          <div class="figure"><span lang="pl">Hot · Warm · Cold</span><span lang="en">Hot · Warm · Cold</span></div>
-          <p class="figure-cap"><span lang="pl">Wgraj eksport leadów z CRM i dostosuj wagi – ranking przelicza się na żywo.</span><span lang="en">Drop in a CRM lead export, tune the weights – the ranking recalculates live.</span></p>
-          <p><span lang="pl">Zbudowane na tym, czego nauczyłem się, administrując CRM w firmie energetycznej: handlowcy tracą czas na leady, które nigdy nie kupią.</span><span lang="en">Built on what I learned running a CRM at an energy company: reps lose time on leads that will never buy.</span></p>
-          <div class="links"><a href="projects/lead-scoring/"><span lang="pl">Wypróbuj</span><span lang="en">Try it</span></a><a href="https://github.com/KornelDyb/KornelDyb.github.io/tree/main/projects/lead-scoring">GitHub</a></div>
-        </div>
-      </article>
 
       <p class="older"><span lang="pl">Wcześniejsze projekty z nauki Pythona (Budget App, To-do list, porządkowanie pulpitu) są na</span><span lang="en">Earlier learning projects in Python (Budget App, to-do list, desktop cleaner) are on</span> <a href="https://github.com/KornelDyb">GitHub</a>.</p>
     </div>
@@ -224,14 +262,14 @@
     <div class="wrap">
       <div class="block-head">
         <h2><span lang="pl">Doświadczenie</span><span lang="en">Experience</span></h2>
-        <p><span lang="pl">Od zakupów w SAP i analiz inwestycji dla zarządu po rozwój CRM dla całego działu sprzedaży.</span><span lang="en">From SAP procurement and investment analysis for the Board to developing the CRM for an entire sales department.</span></p>
+        <p><span lang="pl">Od pierwszej linii sprzedaży, przez SAP, po CRM dla całego działu sprzedaży.</span><span lang="en">From the front line of sales and SAP to running the CRM for an entire sales department.</span></p>
       </div>
       <!-- CV:STATS:START -->
       <dl class="cvstats">
-        <div><dt>200–300</dt><dd><span lang="pl">użytkowników CRM</span><span lang="en">CRM users</span></dd></div>
-        <div><dt>100–120</dt><dd><span lang="pl">wdrożonych zmian w CRM</span><span lang="en">CRM changes delivered</span></dd></div>
-        <div><dt>~200</dt><dd><span lang="pl">przeszkolonych osób</span><span lang="en">people trained</span></dd></div>
-        <div><dt>4</dt><dd><span lang="pl">dashboardy Power BI</span><span lang="en">Power BI dashboards</span></dd></div>
+        <div><dt>200+</dt><dd><span lang="pl">handlowców w CRM</span><span lang="en">sales reps on the CRM</span></dd></div>
+        <div><dt>100+</dt><dd><span lang="pl">wdrożonych zmian</span><span lang="en">changes delivered</span></dd></div>
+        <div><dt>200+</dt><dd><span lang="pl">rozwiązanych zgłoszeń</span><span lang="en">tickets resolved</span></dd></div>
+        <div><dt>~200</dt><dd><span lang="pl">przeszkolonych osób</span><span lang="en">users trained</span></dd></div>
       </dl>
       <!-- CV:STATS:END -->
       <!-- CV:EXPERIENCE:START -->
@@ -239,17 +277,15 @@
         <li>
           <div class="when">08.2024 – 09.2026</div>
           <div>
-            <h3><span lang="pl">Sales Support System Administration Specialist (CRM)</span><span lang="en">Sales Support System Administration Specialist (CRM)</span></h3>
+            <h3><span lang="pl">Specjalista ds. administracji systemu CRM (Sales Support System Administration Specialist)</span><span lang="en">Sales Support System Administration Specialist (CRM)</span></h3>
             <div class="org">Respect Energy · <span lang="pl">Warszawa</span><span lang="en">Warsaw</span></div>
             <ul>
-              <li><span lang="pl">Administrowałem CRM Salesbook dla 200–300 użytkowników sprzedaży (lejek sprzedażowy, struktura danych, uprawnienia); przeszkoliłem ok. 200 z nich.</span><span lang="en">Administered the Salesbook CRM for 200–300 sales users (sales pipeline, data structure, permissions); trained around 200 of them.</span></li>
-              <li><span lang="pl">Przeprowadziłem ok. 100–120 zmian rozwojowych (change requests), od zebrania wymagań po testy UAT i wdrożenie, oraz obsłużyłem 200–300 zgłoszeń błędów.</span><span lang="en">Delivered around 100–120 change requests, from requirements gathering through UAT to release, and handled 200–300 bug reports.</span></li>
-              <li><span lang="pl">Zautomatyzowałem cenniki w CRM: ceny minimalne pobierają się z SQL, zamiast być przepisywane ręcznie z maili. Ograniczyło to błędy wynikające z nieaktualnych cenników i skróciło przygotowanie oferty; handlowiec dodaje tylko marżę.</span><span lang="en">Automated price lists in the CRM: minimum prices are pulled from SQL instead of being copied by hand from emails. This cut errors caused by outdated price lists and shortened offer preparation; reps now only add their margin.</span></li>
-              <li><span lang="pl">Przeniosłem proces wycen z korespondencji mailowej do CRM: handlowiec zamawia wycenę zmianą statusu, a dział wycen odpowiada w systemie, z pełną historią i widocznością sprawy.</span><span lang="en">Moved the pricing-request process from email into the CRM: a rep requests a quote by changing a status, and the pricing team answers in the system, with full history and visibility.</span></li>
-              <li><span lang="pl">Skonfigurowałem automatyzacje workflow w CRM, m.in. powiadomienia e-mail i automatyczne notatki przy zmianie statusu.</span><span lang="en">Configured CRM workflow automations, including email notifications and automatic notes on status changes.</span></li>
-              <li><span lang="pl">Zbudowałem 4 dashboardy w Power BI na danych ze Snowflake (SQL, DAX): koszty licencji CRM na podstawie aktywnych kont, lejek sprzedaży nowego produktu (klienci i wolumen według statusu), aktualne i archiwalne cenniki oraz postęp kampanii kluczowych klientów według handlowców.</span><span lang="en">Built 4 Power BI dashboards on Snowflake data (SQL, DAX): CRM licence costs based on active accounts, the sales funnel of a new product (customers and volume by status), current and historical price lists, and key-account campaign progress by sales rep.</span></li>
-              <li><span lang="pl">Zautomatyzowałem w Pythonie cotygodniowy raport KPI kluczowych klientów (ETL: API → Python → Excel → automatyczna wysyłka e-mail): liczba spotkań i aktywnych wątków, trend tydzień do tygodnia, wyniki handlowców na tle średniej zespołu; raport zastąpił ok. 2 h ręcznej pracy tygodniowo.</span><span lang="en">Automated a weekly key-account KPI report in Python (ETL: API → Python → Excel → automatic email): number of meetings and active threads, week-over-week trend, each rep against the team average; the report replaced about 2 hours of manual work per week.</span></li>
-              <li><span lang="pl">Odpowiadałem na pytania biznesowe z danymi, pisząc zapytania SQL łączące tabele w hurtowni Snowflake.</span><span lang="en">Answered business questions with data, writing SQL queries joining tables in the Snowflake data warehouse.</span></li>
+              <li><span lang="pl">Odpowiadałem za CRM Salesbook (SaaS) dla ponad 200 handlowców: lejek sprzedażowy, strukturę danych i uprawnienia. Przeszkoliłem z obsługi systemu około 200 osób.</span><span lang="en">Owned the Salesbook CRM (SaaS) for 200+ sales reps: sales pipeline, data structure and user permissions. Trained around 200 users.</span></li>
+              <li><span lang="pl">Wdrożyłem ponad 100 zmian w CRM, od zebrania wymagań ze sprzedażą, przez testy UAT, po wdrożenie. Rozwiązałem ponad 200 zgłoszeń od użytkowników.</span><span lang="en">Delivered 100+ CRM changes, from gathering requirements with the sales team through UAT to release, and resolved 200+ user tickets.</span></li>
+              <li><span lang="pl">Przeniosłem wyceny z maila do CRM. Handlowiec zamawia wycenę zmianą statusu, dział wycen odpowiada w systemie, a cała historia sprawy jest w jednym miejscu. Do tego automatyczne powiadomienia i notatki przy zmianie statusu.</span><span lang="en">Moved pricing requests from email into the CRM. A rep requests a quote by changing a status, the pricing team replies in the system, and the full history sits in one place. Added automatic notifications and notes on status changes.</span></li>
+              <li><span lang="pl">Podpiąłem cenniki w CRM do bazy SQL. Ceny minimalne aktualizują się same, handlowiec dodaje tylko marżę, a oferty nie powstają już na nieaktualnych cenach.</span><span lang="en">Connected CRM price lists to an SQL database, so minimum prices update automatically and reps only add their margin. Offers are no longer built on outdated prices.</span></li>
+              <li><span lang="pl">Przygotowałem 4 dashboardy w Power BI (Snowflake, SQL, DAX) dla sprzedaży i zarządu: lejek nowego produktu, kampania kluczowych klientów, cenniki i koszty licencji CRM.</span><span lang="en">Built 4 Power BI dashboards (Snowflake, SQL, DAX) for sales and management: new product pipeline, key account campaign, price lists and CRM licence costs.</span></li>
+              <li><span lang="pl">Zautomatyzowałem w Pythonie cotygodniowy raport KPI kluczowych klientów (spotkania, aktywne wątki, wyniki handlowców na tle zespołu). Raport sam wychodzi mailem i oszczędza około 2 godzin pracy tygodniowo.</span><span lang="en">Automated a weekly key account KPI report in Python (meetings, active threads, each rep against the team average). It goes out by email on its own and saves about 2 hours of manual work a week.</span></li>
             </ul>
           </div>
         </li>
@@ -259,20 +295,19 @@
             <h3><span lang="pl">Junior Analyst</span><span lang="en">Junior Analyst</span></h3>
             <div class="org">Sky Estate · <span lang="pl">Warszawa</span><span lang="en">Warsaw</span></div>
             <ul>
-              <li><span lang="pl">Wyszukiwałem i analizowałem ok. 40–50 inwestycji nieruchomościowych o wartości liczonej w milionach PLN, licząc ROI w modelach finansowych w Excelu.</span><span lang="en">Sourced and analysed around 40–50 real-estate investments worth millions of PLN each, calculating ROI in Excel financial models.</span></li>
-              <li><span lang="pl">Rekomendowałem Zarządowi, które budynki kupić i jak je skomercjalizować, na podstawie porównania rentowności (ROI).</span><span lang="en">Recommended to the Board which buildings to buy and how to commercialise them, based on ROI comparisons.</span></li>
-              <li><span lang="pl">Analizowałem tabele czynszowe i efektywność produktów na danych z SAP Business One.</span><span lang="en">Analysed rent rolls and product performance using SAP Business One data.</span></li>
+              <li><span lang="pl">Przeanalizowałem ponad 40 nieruchomości inwestycyjnych w Excelu (modele ROI) i przygotowywałem dla zarządu rekomendacje zakupu i komercjalizacji budynków.</span><span lang="en">Analysed 40+ investment properties in Excel (ROI models) and prepared purchase and commercialisation recommendations for the Board.</span></li>
+              <li><span lang="pl">Prowadziłem tabele czynszowe w SAP Business One i przekazywałem je do działu finansów, pilnując, żeby wszystkie dane się zgadzały.</span><span lang="en">Maintained rent rolls in SAP Business One and passed them to the finance team, making sure all the data matched.</span></li>
             </ul>
           </div>
         </li>
         <li>
           <div class="when">05.2023 – 03.2024</div>
           <div>
-            <h3><span lang="pl">Admin Procurement SAP</span><span lang="en">Procurement Administrator (SAP)</span></h3>
+            <h3><span lang="pl">Admin Procurement SAP</span><span lang="en">Admin Procurement SAP</span></h3>
             <div class="org">Cellnex · <span lang="pl">Warszawa</span><span lang="en">Warsaw</span></div>
             <ul>
-              <li><span lang="pl">Obsługiwałem procesy zakupowe i analizowałem dane zakupowe w SAP.</span><span lang="en">Ran procurement processes and analysed procurement data in SAP.</span></li>
-              <li><span lang="pl">Przygotowywałem zestawienia operacyjne w Excelu dla działów finansów i operacji.</span><span lang="en">Prepared operational Excel reports for the finance and operations teams.</span></li>
+              <li><span lang="pl">Obsługiwałem zamówienia i procesy zakupowe w SAP.</span><span lang="en">Handled purchase orders and procurement processes in SAP.</span></li>
+              <li><span lang="pl">Przygotowywałem zestawienia operacyjne w Excelu dla działu zakupów.</span><span lang="en">Prepared operational Excel reports for the procurement team.</span></li>
             </ul>
           </div>
         </li>
@@ -282,8 +317,8 @@
             <h3><span lang="pl">Presales</span><span lang="en">Presales</span></h3>
             <div class="org">DrSmile · <span lang="pl">Warszawa</span><span lang="en">Warsaw</span></div>
             <ul>
-              <li><span lang="pl">Prezentacje produktu i dopasowanie rozwiązania do potrzeb klienta.</span><span lang="en">Product presentations and tailoring the solution to client needs.</span></li>
-              <li><span lang="pl">Budowanie relacji i zwiększanie konwersji; praca w Salesforce jako użytkownik.</span><span lang="en">Built relationships and improved conversion; daily work in Salesforce as a user.</span></li>
+              <li><span lang="pl">Byłem pierwszą linią kontaktu z klientem: rozmowy, prezentacja produktu i dobór rozwiązania do jego potrzeb.</span><span lang="en">First point of contact for customers: conversations, product presentations and matching the solution to their needs.</span></li>
+              <li><span lang="pl">Na co dzień pracowałem w Salesforce po stronie sprzedaży, więc wiem, czego handlowiec potrzebuje od CRM.</span><span lang="en">Worked in Salesforce every day on the sales side, so I know what a rep actually needs from a CRM.</span></li>
             </ul>
           </div>
         </li>
@@ -292,27 +327,31 @@
       <!-- CV:SKILLS:START -->
       <div class="skills">
         <div>
-          <h3><span lang="pl">Analiza danych i BI</span><span lang="en">Data analysis &amp; BI</span></h3>
-          <ul class="tags"><li><span lang="pl">SQL (JOIN, modelowanie danych)</span><span lang="en">SQL (joins, data modelling)</span></li><li><span lang="pl">Snowflake</span><span lang="en">Snowflake</span></li><li><span lang="pl">Power BI (DAX)</span><span lang="en">Power BI (DAX)</span></li><li><span lang="pl">Power Query</span><span lang="en">Power Query</span></li><li><span lang="pl">Excel (modele finansowe, VBA)</span><span lang="en">Excel (financial models, VBA)</span></li><li><span lang="pl">statystyka</span><span lang="en">statistics</span></li></ul>
+          <h3><span lang="pl">CRM i sprzedaż</span><span lang="en">CRM and sales</span></h3>
+          <ul class="tags"><li><span lang="pl">administracja CRM</span><span lang="en">CRM administration</span></li><li><span lang="pl">Salesforce</span><span lang="en">Salesforce</span></li><li><span lang="pl">Salesbook (SaaS)</span><span lang="en">Salesbook (SaaS)</span></li><li><span lang="pl">HubSpot</span><span lang="en">HubSpot</span></li><li><span lang="pl">lejek sprzedażowy</span><span lang="en">sales pipeline</span></li><li><span lang="pl">automatyzacje workflow</span><span lang="en">workflow automation</span></li><li><span lang="pl">uprawnienia</span><span lang="en">user permissions</span></li><li><span lang="pl">jakość danych</span><span lang="en">data quality</span></li><li><span lang="pl">szkolenia użytkowników</span><span lang="en">user training</span></li></ul>
         </div>
         <div>
-          <h3><span lang="pl">Automatyzacja i integracje</span><span lang="en">Automation &amp; integrations</span></h3>
-          <ul class="tags"><li><span lang="pl">ETL</span><span lang="en">ETL</span></li><li><span lang="pl">API</span><span lang="en">API</span></li><li><span lang="pl">n8n</span><span lang="en">n8n</span></li><li><span lang="pl">Python (Pandas, NumPy, BeautifulSoup, Selenium)</span><span lang="en">Python (Pandas, NumPy, BeautifulSoup, Selenium)</span></li><li><span lang="pl">Excel VBA</span><span lang="en">Excel VBA</span></li><li><span lang="pl">GitHub Actions</span><span lang="en">GitHub Actions</span></li></ul>
+          <h3><span lang="pl">Wdrożenia i procesy</span><span lang="en">Implementation and processes</span></h3>
+          <ul class="tags"><li><span lang="pl">analiza wymagań</span><span lang="en">requirements gathering</span></li><li><span lang="pl">change requests</span><span lang="en">change requests</span></li><li><span lang="pl">testy UAT</span><span lang="en">UAT</span></li><li><span lang="pl">obsługa zgłoszeń</span><span lang="en">ticket handling</span></li><li><span lang="pl">Jira</span><span lang="en">Jira</span></li><li><span lang="pl">Confluence</span><span lang="en">Confluence</span></li><li><span lang="pl">Agile / Scrum</span><span lang="en">Agile / Scrum</span></li></ul>
         </div>
         <div>
-          <h3><span lang="pl">Systemy</span><span lang="en">Systems</span></h3>
-          <ul class="tags"><li><span lang="pl">CRM (Salesbook)</span><span lang="en">CRM (Salesbook)</span></li><li><span lang="pl">Salesforce</span><span lang="en">Salesforce</span></li><li><span lang="pl">SAP</span><span lang="en">SAP</span></li><li><span lang="pl">SAP Business One</span><span lang="en">SAP Business One</span></li><li><span lang="pl">Jira</span><span lang="en">Jira</span></li><li><span lang="pl">Confluence</span><span lang="en">Confluence</span></li></ul>
+          <h3><span lang="pl">Raportowanie</span><span lang="en">Reporting</span></h3>
+          <ul class="tags"><li><span lang="pl">Power BI (DAX)</span><span lang="en">Power BI (DAX)</span></li><li><span lang="pl">SQL</span><span lang="en">SQL</span></li><li><span lang="pl">Snowflake</span><span lang="en">Snowflake</span></li><li><span lang="pl">Excel (VBA, Power Query)</span><span lang="en">Excel (VBA, Power Query)</span></li><li><span lang="pl">raporty KPI</span><span lang="en">KPI reporting</span></li></ul>
         </div>
         <div>
-          <h3><span lang="pl">Metodyki i biznes</span><span lang="en">Methods &amp; business</span></h3>
-          <ul class="tags"><li><span lang="pl">Agile / Scrum</span><span lang="en">Agile / Scrum</span></li><li><span lang="pl">analiza wymagań</span><span lang="en">requirements analysis</span></li><li><span lang="pl">change requests</span><span lang="en">change requests</span></li><li><span lang="pl">testy UAT</span><span lang="en">UAT testing</span></li><li><span lang="pl">szkolenia użytkowników</span><span lang="en">user training</span></li><li><span lang="pl">raportowanie KPI</span><span lang="en">KPI reporting</span></li></ul>
+          <h3><span lang="pl">Automatyzacja</span><span lang="en">Automation</span></h3>
+          <ul class="tags"><li><span lang="pl">n8n</span><span lang="en">n8n</span></li><li><span lang="pl">Make</span><span lang="en">Make</span></li><li><span lang="pl">Python</span><span lang="en">Python</span></li><li><span lang="pl">API</span><span lang="en">APIs</span></li><li><span lang="pl">integracje systemów</span><span lang="en">system integrations</span></li><li><span lang="pl">GitHub Actions</span><span lang="en">GitHub Actions</span></li></ul>
+        </div>
+        <div>
+          <h3><span lang="pl">Inne systemy</span><span lang="en">Other systems</span></h3>
+          <ul class="tags"><li><span lang="pl">SAP</span><span lang="en">SAP</span></li><li><span lang="pl">SAP Business One</span><span lang="en">SAP Business One</span></li></ul>
         </div>
       </div>
       <div class="cvextra">
         <div>
           <h3><span lang="pl">Kursy</span><span lang="en">Courses</span></h3>
           <ul class="courses"><li>The Complete SQL Bootcamp: Go from Zero to Hero</li><li>Microsoft Power BI Desktop for Business Intelligence</li><li>Python for Data Science and Machine Learning Bootcamp</li><li>Business Analysis Fundamentals – IIBA endorsed</li></ul>
-          <p class="small muted"><span lang="pl">Pełna lista kursów (m.in. BPMN 2.0, Jira i Confluence, UML) na LinkedIn</span><span lang="en">Full list of courses (incl. BPMN 2.0, Jira &amp; Confluence, UML) on LinkedIn</span></p>
+          <p class="small muted"><span lang="pl">Pełna lista kursów (m.in. BPMN 2.0, Jira i Confluence, UML) na LinkedIn</span><span lang="en">Full list (incl. BPMN 2.0, Jira and Confluence, UML) on LinkedIn</span></p>
         </div>
         <div>
           <h3><span lang="pl">Języki</span><span lang="en">Languages</span></h3>
@@ -341,7 +380,7 @@
       <h2><span lang="pl">O mnie</span><span lang="en">About me</span></h2>
       <div>
         <p><span lang="pl">Mieszkam w Warszawie. Do programowania wciągnąłem się w 2023 roku – zaczęło się od Pythona i skryptów, które oszczędzały mi czas w pracy. Dziś najbardziej lubię momenty, kiedy proces, który zabierał zespołowi godziny, zaczyna działać sam.</span><span lang="en">I live in Warsaw. I got into programming in 2023 – it started with Python and small scripts that saved me time at work. What I enjoy most today is the moment a process that used to eat a team's hours starts running on its own.</span></p>
-        <p><span lang="pl">Łączę dwa światy: rozumiem, czego potrzebuje handlowiec, i potrafię to przełożyć na konfigurację systemu, automatyzację albo raport. Poza pracą – siłownia.</span><span lang="en">I bridge two worlds: I understand what a sales rep needs and can translate it into a system configuration, an automation or a report. Outside work – the gym.</span></p>
+        <p><span lang="pl">Łączę dwa światy: rozumiem, czego potrzebuje handlowiec, i potrafię to przełożyć na konfigurację systemu, automatyzację albo raport. Poza pracą: siłownia i piłka nożna.</span><span lang="en">I bridge two worlds: I understand what a sales rep needs and can translate it into a system configuration, an automation or a report. Outside work: the gym and football.</span></p>
       </div>
     </div>
 
@@ -349,7 +388,7 @@
       <div class="contact">
         <div>
           <h2><span lang="pl">Porozmawiajmy o Twoim procesie.</span><span lang="en">Let's talk about your process.</span></h2>
-          <p><span lang="pl">Szukasz kogoś do CRM, automatyzacji lub rozwoju sprzedaży?</span><span lang="en">Looking for someone for CRM, automation or sales development?</span></p>
+          <p><span lang="pl">Szukasz kogoś do CRM, Sales Operations albo automatyzacji sprzedaży?</span><span lang="en">Looking for someone for CRM, Sales Operations or sales automation?</span></p>
           <p class="mail"><span lang="pl">E-mail:</span><span lang="en">Email:</span> <a href="mailto:korneldybalski@gmail.com">korneldybalski@gmail.com</a></p>
         </div>
         <div class="row">

@@ -22,6 +22,7 @@ data/cv.json, this script or the templates change.
 from __future__ import annotations
 
 import argparse
+import os
 import html
 import json
 import re
@@ -162,22 +163,50 @@ def inject(page: str, blocks: dict[str, str]) -> str:
 # Static (non-variable) font files: Chromium embeds them as real TrueType fonts,
 # which keeps the PDF text clean and machine-readable for ATS parsers.
 FONT_FACES = """
-@font-face { font-family: "Bricolage Grotesque"; src: url("../assets/fonts/static/BricolageGrotesque-SemiBold.ttf") format("truetype"); font-weight: 650; font-display: block; }
+@font-face { font-family: "Bricolage Grotesque"; src: url("../assets/fonts/static/BricolageGrotesque-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
 @font-face { font-family: "Bricolage Grotesque"; src: url("../assets/fonts/static/BricolageGrotesque-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
 @font-face { font-family: "Instrument Sans"; src: url("../assets/fonts/static/InstrumentSans-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
-@font-face { font-family: "Instrument Sans"; src: url("../assets/fonts/static/InstrumentSans-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Instrument Sans"; src: url("../assets/fonts/static/InstrumentSans-SemiBold.ttf") format("truetype"); font-weight: 600 700; font-display: block; }
 """
 
+P_L = {  # labels used only in the printable CVs
+    "case": ("Case", "Case"),
+    "bring": ("Co wnoszę do zespołu", "What I bring to the team"),
+    "tools": ("Narzędzia i umiejętności", "Tools and skills"),
+    "projects_short": ("Projekty", "Projects"),
+    "outside": ("Poza pracą", "Outside work"),
+    "extra": ("Dodatkowe", "Other"),
+    "qr": ("Moje projekty: zeskanuj albo wejdź", "My projects: scan or visit"),
+}
 
-def contact_items(p: dict, lang: str):
-    return [
-        (lab("phone", lang), p["phone"], f"tel:{p['phone'].replace(' ', '')}"),
-        (lab("email", lang), p["email"], f"mailto:{p['email']}"),
-        (lab("location", lang), tr(p["location"], lang), None),
-        ("LinkedIn", p["linkedin_short"], f"https://{p['linkedin']}"),
-        ("GitHub", p["github"], f"https://{p['github']}"),
-        ("Portfolio", p["website"], f"https://{p['website']}"),
-    ]
+
+def pl_(key, lang):
+    return P_L[key][0 if lang == "pl" else 1]
+
+
+def item_list(items, lang):
+    return ", ".join(tr(i, lang) for i in items)
+
+
+def qr_svg(url: str) -> str:
+    import io
+    import segno
+    buf = io.BytesIO()
+    segno.make(url, error="m").save(buf, kind="svg", scale=3, border=0, dark="#12343b", light=None, xmldecl=False)
+    return buf.getvalue().decode()
+
+
+ICON = {
+    "phone": '<path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/>',
+    "mail": '<path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/>',
+    "in": '<path d="M4 9h4v11H4zM6 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM10 9h4v1.6c.6-1 1.9-1.9 3.6-1.9 3 0 3.4 2 3.4 4.6V20h-4v-5.8c0-1.4 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-4z"/>',
+    "pin": '<path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>',
+    "ok": '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2"/>',
+}
+
+
+def ic(k):
+    return f'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ICON[k]}</svg>'
 
 
 def page_shell(lang: str, title: str, css: str, body: str) -> str:
@@ -185,9 +214,8 @@ def page_shell(lang: str, title: str, css: str, body: str) -> str:
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(title)}</title>
 <meta name="robots" content="noindex">
+<title>{e(title)}</title>
 <style>{FONT_FACES}{css}</style>
 </head>
 <body>
@@ -199,150 +227,156 @@ def page_shell(lang: str, title: str, css: str, body: str) -> str:
 
 DESIGN_CSS = """
 @page { size: A4; margin: 0; }
-:root { --pine: #1c5e6c; --pine-2: #1c5e6c; --ink: #102f38; --ink-2: #47646d; --line: #c9dade; --tile: #ecf4f6; --marker: #ffffff; --side-ink: #eef6f8; --side-2: #b5d0d6; }
 * { box-sizing: border-box; }
-html, body { margin: 0; }
-body { font: 400 9.1pt/1.42 "Instrument Sans", "Segoe UI", Arial, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff; }
-.sheet { width: 210mm; height: 297mm; display: grid; grid-template-columns: 66mm 1fr; overflow: hidden; margin: 0 auto; }
-@media screen { body { background: #d9dfdc; padding: 24px 0; } .sheet { box-shadow: 0 10px 40px rgba(16,48,47,.25); background: #fff; } }
-aside { background: var(--pine); color: var(--side-ink); padding: 13mm 8mm 10mm 9mm; display: flex; flex-direction: column; gap: 6.2mm; }
-.photo { width: 42mm; height: 42mm; border-radius: 50%; overflow: hidden; background: #e4ecea; margin: 0 auto 1mm; border: 1.2mm solid rgba(255,255,255,.12); }
-.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; display: block; }
-aside h2 { font: 650 8.6pt/1.2 "Bricolage Grotesque", sans-serif; color: var(--marker); margin: 0 0 2.2mm; letter-spacing: .03em; padding-bottom: 1.2mm; border-bottom: .25mm solid rgba(255,255,255,.28); }
-aside dl { margin: 0; display: grid; gap: 2mm; }
-aside dt { font-size: 7pt; color: var(--side-2); }
-aside dd { margin: 0; font-size: 8.2pt; word-break: break-word; }
-aside a { color: inherit; text-decoration: none; }
-.sk { margin-bottom: 2.4mm; }
-.sk b { display: block; font-weight: 600; font-size: 8.2pt; }
-.sk span { font-size: 8pt; color: var(--side-ink); }
-aside ul { margin: 0; padding-left: 3.6mm; font-size: 8pt; }
-aside li { margin-bottom: 1.2mm; }
-main { padding: 13mm 11mm 9mm 10mm; display: flex; flex-direction: column; }
-h1 { font: 700 27pt/1 "Bricolage Grotesque", sans-serif; letter-spacing: -.02em; margin: 0 0 2mm; }
-.role { color: var(--pine-2); font-weight: 600; font-size: 10.5pt; margin-bottom: 3mm; }
-.summary { color: var(--ink-2); margin: 0 0 4.5mm; }
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2mm; margin-bottom: 6mm; }
-.stats div { background: var(--tile); border-radius: 2mm; padding: 2.4mm 3mm; }
-.stats b { display: block; font: 700 13.5pt/1.1 "Bricolage Grotesque", sans-serif; color: var(--pine-2); }
-.stats span { font-size: 7.4pt; color: var(--ink-2); line-height: 1.25; display: block; margin-top: .6mm; }
-main h2 { font: 650 10.5pt/1.2 "Bricolage Grotesque", sans-serif; margin: 0 0 3mm; padding-bottom: 1.6mm; border-bottom: .3mm solid var(--line); }
-.job { margin-bottom: 4mm; break-inside: avoid; }
-.job header { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
-.job h3 { font: 650 10.2pt/1.25 "Bricolage Grotesque", sans-serif; margin: 0; }
-.job time { font-size: 8.2pt; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.job .org { color: var(--pine-2); font-weight: 600; font-size: 8.6pt; margin: .5mm 0 1.4mm; }
-.job ul { margin: 0; padding-left: 4mm; }
-.job li { margin-bottom: 1mm; }
-.projects-h { margin-top: 1.5mm !important; }
-.proj { margin-bottom: 2.4mm; }
-.proj b { font-weight: 600; }
-.proj .tech { color: var(--ink-2); font-size: 7.8pt; }
-.proj a { color: var(--pine-2); text-decoration: none; font-size: 8pt; }
-.consent { margin-top: auto; font-size: 6.6pt; color: var(--ink-2); padding-top: 3mm; }
+body { margin: 0; font-family: "Instrument Sans", sans-serif; font-size: 8.55pt; line-height: 1.38; color: #1c2b30; }
+a { color: inherit; text-decoration: none; }
+.pg { width: 210mm; height: 297mm; overflow: hidden; display: flex; flex-direction: column; background: #fff; }
+.hd { background: radial-gradient(120mm 70mm at 100% 0%, rgba(127,209,195,.22), transparent 70%), linear-gradient(160deg, #143a42, #0f2a30); color: #eaf4f3; padding: 8mm 11mm 13mm; display: flex; gap: 7mm; align-items: center; }
+.ph { width: 34mm; height: 34mm; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 2.5px solid #7fd1c3; box-shadow: 0 0 0 5px rgba(127,209,195,.15); flex: none; }
+.hm { flex: 1; }
+h1 { font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 29pt; margin: 0; line-height: 1; letter-spacing: -.6px; color: #fff; }
+.tt { font-family: "Bricolage Grotesque"; font-weight: 600; color: #7fd1c3; font-size: 12pt; margin: 3px 0 4px; letter-spacing: .2px; }
+.tag { font-size: 9.5pt; color: #d6e9e6; margin: 0 0 5.5px; max-width: 120mm; }
+.ct { font-size: 7.7pt; color: #cfe3e0; display: flex; flex-wrap: wrap; gap: 3px 11px; }
+.ct span, .ct a { display: inline-flex; align-items: center; gap: 3.5px; }
+.ct svg { width: 8.5pt; height: 8.5pt; color: #7fd1c3; flex: none; }
+.ct .av { color: #fff; font-weight: 600; }
+.qr { flex: none; background: #fff; border-radius: 7px; padding: 2.2mm; text-align: center; width: 27mm; }
+.qr svg { width: 22mm; height: 22mm; display: block; margin: 0 auto; }
+.qr span { display: block; font-size: 6pt; color: #12343b; line-height: 1.2; margin-top: 1.2mm; font-weight: 600; }
+.qr .url { font-size: 6.3pt; color: #1f7a74; font-weight: 700; margin-top: .6mm; }
+.stats { display: flex; gap: 3mm; margin: -8.5mm 11mm 0; position: relative; }
+.st { flex: 1; background: #fff; border-radius: 8px; padding: 2.6mm 3.4mm; box-shadow: 0 3px 10px rgba(18,52,59,.14); border-top: 3px solid #2a9d8f; }
+.st b { display: block; font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 15.5pt; color: #12343b; line-height: 1.05; }
+.st span { font-size: 7.2pt; color: #4a6268; }
+.bd { display: flex; gap: 7mm; padding: 5mm 11mm 0; flex: 1; }
+.mn { flex: 1.62; } .sd { flex: 1; display: flex; flex-direction: column; }
+h2 { font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 11.3pt; color: #12343b; margin: 0 0 2.3mm; display: flex; align-items: center; gap: 6px; }
+h2:after { content: ""; flex: 1; height: 1px; background: #d3e2e1; }
+.sec { margin-bottom: 4mm; }
+.tl { position: relative; padding-left: 4.5mm; }
+.tl:before { content: ""; position: absolute; left: 1.1mm; top: 1.5mm; bottom: 2mm; width: 1.3px; background: #cfe1df; }
+.job { position: relative; margin-bottom: 2.6mm; }
+.job:before { content: ""; position: absolute; left: -4.5mm; top: 1.1mm; width: 2.4mm; height: 2.4mm; border-radius: 50%; background: #fff; border: 1.6px solid #2a9d8f; }
+.job:first-child:before { background: #2a9d8f; }
+.jh { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+.r { font-weight: 700; font-size: 9.2pt; color: #12343b; } .d { font-size: 7.5pt; color: #5d7177; white-space: nowrap; }
+.co { color: #2a9d8f; font-weight: 600; font-size: 7.9pt; margin-bottom: 1px; }
+ul { margin: 0; padding-left: 12px; } li { margin: 1.1px 0; } li::marker { color: #2a9d8f; }
+.case { background: #eef6f5; border-left: 3px solid #2a9d8f; border-radius: 0 8px 8px 0; padding: 2.5mm 3.3mm; margin: 2mm 0 0; }
+.case h3 { font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 9.2pt; color: #12343b; margin: 0 0 1.3mm; }
+.cr { display: flex; gap: 6px; margin: 1mm 0; } .ck { flex: none; width: 18.5mm; font-weight: 700; color: #1f7a74; font-size: 7.7pt; }
+.bring { list-style: none; padding: 0; counter-reset: n; }
+.bring li { counter-increment: n; position: relative; padding-left: 7mm; margin: 0 0 1.9mm; }
+.bring li:before { content: counter(n); position: absolute; left: 0; top: .2mm; width: 4.6mm; height: 4.6mm; border-radius: 50%; background: #12343b; color: #7fd1c3; font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 7.5pt; display: flex; align-items: center; justify-content: center; }
+.bring b { color: #12343b; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.3mm; }
+.chip { background: #f3f8f8; border: 1px solid #cfe1df; border-radius: 20px; padding: .45mm 2.2mm; font-size: 7.4pt; color: #24414a; }
+.pj { margin-bottom: 1.2mm; color: #33474d; } .pj b { color: #12343b; }
+.badge { font-size: 6.4pt; font-weight: 600; background: #7fd1c3; color: #0f2a30; border-radius: 10px; padding: .2mm 1.6mm; margin-left: 3px; vertical-align: 1px; }
+.out { background: #eef6f5; border-left: 3px solid #2a9d8f; color: #33474d; border-radius: 0 8px 8px 0; padding: 2.6mm 3.3mm; margin-top: 1mm; margin-bottom: 0; }
+.out h2:after { background: #cfe1df; }
+.ft { padding: 3mm 11mm 5mm; font-size: 6.1pt; color: #86969a; }
 """
+
+
+def render_design(cv: dict, lang: str, photo: bool | None = None) -> str:
+    p = cv["person"]
+    if photo is None:
+        photo = lang == "pl"  # no photo on the English CV (common expectation abroad)
+    t = lambda v: e(tr(v, lang))
+    stats = "".join(f"<div class=st><b>{e(s['value'])}</b><span>{t(s['label'])}</span></div>" for s in cv["stats"])
+    case = cv["case_study"]
+    case_html = f"<div class=case><h3>{t(case['title'])}</h3>" + "".join(
+        f"<div class=cr><span class=ck>{t(r['label'])}</span><span>{t(r['text'])}</span></div>" for r in case["rows"]) + "</div>"
+    jobs = []
+    for i, job in enumerate(cv["experience"]):
+        bullets = "".join(f"<li>{t(b)}</li>" for b in job.get("design", job["bullets"]))
+        jobs.append(f"""<div class=job><div class=jh><span class=r>{t(job.get('role_short', job['role']))}</span><span class=d>{period(job, lang)}</span></div>
+<div class=co>{e(job['company'])} · {t(job['city'])}</div><ul>{bullets}</ul>{case_html if i == 0 else ''}</div>""")
+    bring = "".join(f"<li><b>{t(v['title'])}:</b> {t(v['text'])}</li>" for v in cv["value_props"])
+    chips = "".join(f"<span class=chip>{e(c)}</span>" for c in cv["chips"][lang])
+    proj = "".join(
+        f"<div class=pj><b>{t(q['short_name'])}</b>" + (f" <span class=badge>{t(q['badge'])}</span>" if q.get("badge") else "")
+        + f"<span>: {t(q['short'])}</span></div>" for q in cv["projects"])
+    courses = "".join(f"<li>{e(c['short'])}</li>" for c in cv["courses"])
+    langs = " · ".join(f"{t(x['name'])}: {t(x['level'])}" for x in cv["languages"])
+    ph = f'<img class=ph src="../{p["photo"]}" alt="">' if photo else ""
+    contact = (f'<span>{ic("phone")}{e(p["phone"])}</span>'
+               f'<a href="mailto:{e(p["email"])}">{ic("mail")}{e(p["email"])}</a>'
+               f'<a href="https://{e(p["linkedin"])}">{ic("in")}{e(p["linkedin_short"])}</a>'
+               f'<span>{ic("pin")}{t(p["location"])}</span><span class=av>{ic("ok")}{t(p["availability"])}</span>')
+    body = f"""<div class=pg>
+<div class=hd>{ph}<div class=hm><h1>{e(p['name'])}</h1><div class=tt>{e(tr(p['title'], lang).replace(' | ', ' · '))}</div>
+<p class=tag>{t(cv['tagline'])}</p><div class=ct>{contact}</div></div>
+<a class=qr href="https://{e(p['website'])}">{qr_svg('https://' + p['website'])}<span>{pl_('qr', lang)}</span><span class=url>{e(p['website'])}</span></a></div>
+<div class=stats>{stats}</div>
+<div class=bd><div class=mn>
+<div class=sec><h2>{lab('experience_short', lang)}</h2><div class=tl>{''.join(jobs)}</div></div>
+<div class=sec><h2>{pl_('projects_short', lang)}</h2>{proj}</div>
+</div><div class=sd>
+<div class=sec><h2>{pl_('bring', lang)}</h2><ol class=bring>{bring}</ol></div>
+<div class=sec><h2>{pl_('tools', lang)}</h2><div class=chips>{chips}</div></div>
+<div class=sec><h2>{lab('courses_udemy', lang)}</h2><ul>{courses}</ul></div>
+<div class=sec><h2>{lab('languages', lang)}</h2>{langs}<br>{t(cv['extra'][0])}</div>
+<div class="sec out"><h2>{pl_('outside', lang)}</h2>{t(cv['outside'])}</div>
+</div></div>
+<div class=ft>{t(cv['consent'])}</div></div>"""
+    return page_shell(lang, f"{p['name']} – CV ({lang.upper()})", DESIGN_CSS, body)
+
 
 ATS_CSS = """
-@page { size: A4; margin: 16mm 17mm 15mm; }
-* { box-sizing: border-box; }
-body { font: 400 10pt/1.45 "Instrument Sans", Arial, sans-serif; color: #111; margin: 0; }
-@media screen { body { max-width: 180mm; margin: 24px auto; padding: 0 16px; } }
-h1 { font: 700 20pt/1.1 "Bricolage Grotesque", Arial, sans-serif; margin: 0 0 1mm; }
-.role { font-weight: 600; font-size: 11pt; margin: 0 0 2mm; }
-.contact { font-size: 9.2pt; margin: 0 0 5mm; }
-.contact a { color: inherit; text-decoration: none; }
-h2 { font: 650 11.5pt/1.2 "Bricolage Grotesque", Arial, sans-serif; margin: 5mm 0 2mm; padding-bottom: 1mm; border-bottom: .3mm solid #999; break-after: avoid; }
-h3 { font-size: 10.2pt; font-weight: 650; margin: 3.5mm 0 1mm; break-after: avoid; }
-ul { margin: 0; padding-left: 5mm; }
-li { margin-bottom: 1.2mm; }
-p { margin: 0 0 2mm; }
-.consent { font-size: 8pt; color: #444; margin-top: 6mm; }
+@page { size: A4; margin: 14mm 15mm 13mm; }
+body { font-family: "Instrument Sans", sans-serif; font-size: 9.6pt; line-height: 1.42; color: #1d2327; margin: 0; }
+a { color: inherit; text-decoration: none; }
+h1 { font-family: "Bricolage Grotesque"; font-weight: 700; font-size: 22pt; margin: 0; letter-spacing: -.3px; }
+.sub { font-weight: 600; font-size: 11pt; margin: 2px 0 4px; }
+.ct { font-size: 8.8pt; color: #333; }
+h2 { font-family: "Bricolage Grotesque"; font-weight: 600; font-size: 12pt; margin: 12px 0 5px; padding-bottom: 2px; border-bottom: 1px solid #333; break-after: avoid; }
+h3 { font-weight: 600; font-size: 9.8pt; margin: 7px 0 0; }
+.jc { font-size: 9pt; color: #444; margin-bottom: 2px; }
+ul { margin: 0; padding-left: 15px; } li { margin: 1px 0; } p { margin: 0; }
+.job { break-inside: avoid; }
+.consent { font-size: 7pt; color: #666; margin-top: 12px; }
 """
-
-
-def render_design(cv: dict, lang: str) -> str:
-    p = cv["person"]
-    contact = "".join(
-        f"<div><dt>{e(k)}</dt><dd>{f'<a href={chr(34)}{e(h)}{chr(34)}>{e(v)}</a>' if h else e(v)}</dd></div>"
-        for k, v, h in contact_items(p, lang) if k != "Portfolio"
-    )
-    skills = "".join(
-        f'<div class="sk"><b>{e(tr(g["short_group"], lang))}</b><span>{e(" · ".join(tr(i, lang) for i in g["short_items"]))}</span></div>'
-        for g in cv["skills"]
-    )
-    courses = "".join(f"<li>{e(c['short'])}</li>" for c in cv["courses"])
-    langs = "".join(f"<div>{e(tr(x['name'], lang))} – {e(tr(x['level'], lang))}</div>" for x in cv["languages"])
-    stats = "".join(f"<div><b>{e(s['value'])}</b><span>{e(tr(s['label'], lang))}</span></div>" for s in cv["stats"])
-    jobs = []
-    for job in cv["experience"]:
-        if job.get("in_pdf") is False:
-            continue
-        lis = "".join(f"<li>{e(t)}</li>" for b in job["bullets"] if (t := bullet_text(b, lang, short=True)))
-        jobs.append(f"""<section class="job"><header><h3>{e(tr(job["role"], lang).replace(" (CRM)", ""))}</h3><time>{period(job, lang)}</time></header>
-<div class="org">{e(job["company"])} · {e(tr(job["city"], lang))}</div><ul>{lis}</ul></section>""")
-    projects = "".join(
-        f'<div class="proj"><b>{e(tr(x["name"], lang))}</b> <span class="tech">{e(x["tech"])}</span>'
-        f'<div>{e(tr(x["text"], lang))} <a href="https://{e(x["url"])}">{e(x["url"])}</a></div></div>'
-        for x in cv.get("projects", [])
-    )
-    body = f"""<div class="sheet">
-<aside>
-  <div class="photo"><img src="../{e(p['photo'])}" alt=""></div>
-  <section><h2>{lab("contact", lang)}</h2><dl>{contact}</dl></section>
-  <section><h2>{lab("skills_short", lang)}</h2>{skills}</section>
-  <section><h2>{lab("courses_udemy", lang)}</h2><ul>{courses}</ul></section>
-  <section><h2>{lab("languages", lang)}</h2>{langs}</section>
-</aside>
-<main>
-  <h1>{e(p["name"])}</h1>
-  <div class="role">{e(tr(p["title"], lang))}</div>
-  <p class="summary">{e(tr(cv["summary_short"], lang))}</p>
-  <div class="stats">{stats}</div>
-  <h2>{lab("experience_short", lang)}</h2>
-  {"".join(jobs)}
-  <h2 class="projects-h">{lab("projects", lang)}</h2>
-  {projects}
-  <p class="consent">{e(tr(cv["consent"], lang))}</p>
-</main>
-</div>"""
-    return page_shell(lang, f"{p['name']} – CV ({lang.upper()})", DESIGN_CSS, body)
 
 
 def render_ats(cv: dict, lang: str) -> str:
     p = cv["person"]
-    contact = " · ".join(
-        f'<a href="{e(h)}">{e(v)}</a>' if h else e(v)
-        for k, v, h in contact_items(p, lang)
-        if k != "LinkedIn"
-    ) + f' · <a href="https://{e(p["linkedin"])}">{e(p["linkedin"])}</a>'
-    jobs = []
-    for job in cv["experience"]:
-        if job.get("in_pdf") is False:
-            continue
-        lis = "".join(f"<li>{e(tr(b, lang))}</li>" for b in job["bullets"])
-        jobs.append(f"<h3>{e(tr(job['role'], lang))} | {e(job['company'])}, {e(tr(job['city'], lang))} | {period(job, lang)}</h3><ul>{lis}</ul>")
-    skills = "".join(
-        f"<li>{e(tr(g['group'], lang))}: {e(', '.join(tr(i, lang) for i in g['items']))}</li>" for g in cv["skills"]
-    )
+    t = lambda v: e(tr(v, lang))
+    contact = " · ".join([
+        f'<a href="tel:{p["phone"].replace(" ", "")}">{e(p["phone"])}</a>',
+        f'<a href="mailto:{e(p["email"])}">{e(p["email"])}</a>',
+        t(p["location"]),
+        f'<a href="https://{e(p["linkedin"])}">{e(p["linkedin"])}</a>',
+        f'<a href="https://{e(p["github"])}">{e(p["github"])}</a>',
+        f'<a href="https://{e(p["website"])}">{e(p["website"])}</a>',
+    ])
+    jobs = "".join(
+        f"<div class=job><h3>{t(j['role'])}</h3><div class=jc>{e(j['company'])}, {t(j['city'])} | {period(j, lang)}</div>"
+        f"<ul>{''.join('<li>' + t(b) + '</li>' for b in j['bullets'])}</ul></div>" for j in cv["experience"])
+    skills = "".join(f"<li><b>{t(g['group'])}:</b> {e(item_list(g['items'], lang))}</li>" for g in cv["skills"])
+    proj = "".join(
+        f"<li><b>{t(q['name'])}</b> ({e(q['tech'])}): {t(q['text'])}"
+        + (f" <a href=\"https://{e(q['url'])}\">{e(q['url'].rstrip('/'))}</a>" if q.get("url") else "") + "</li>"
+        for q in cv["projects"])
     courses = "".join(f"<li>{e(c['name'])} ({e(c['provider'])})</li>" for c in cv["courses"])
-    langs = " · ".join(f"{e(tr(x['name'], lang))} – {e(tr(x['level'], lang))}" for x in cv["languages"])
-    body = f"""<h1>{e(p["name"])}</h1>
-<p class="role">{e(tr(p["title"], lang).replace(" · ", " | "))}</p>
-<p class="contact">{contact}</p>
-<h2>{lab("summary", lang)}</h2>
-<p>{e(tr(cv["summary"], lang))}</p>
-<h2>{lab("experience", lang)}</h2>
-{"".join(jobs)}
-<h2>{lab("projects", lang)}</h2>
-<ul>{"".join(f'<li>{e(tr(x["name"], lang))} ({e(x["tech"])}): {e(tr(x["text"], lang))} https://{e(x["url"])}</li>' for x in cv.get("projects", []))}</ul>
-<h2>{lab("skills", lang)}</h2>
-<ul>{skills}</ul>
-<h2>{lab("courses", lang)}</h2>
-<ul>{courses}<li>{e(tr(cv["courses_note"], lang))}</li></ul>
-<h2>{lab("languages", lang)}</h2>
-<p>{langs}</p>
-<p class="consent">{e(tr(cv["consent"], lang))}</p>"""
+    langs = " · ".join(f"{t(x['name'])}: {t(x['level'])}" for x in cv["languages"])
+    extra = "".join(f"<li>{t(x)}</li>" for x in cv["extra"])
+    body = f"""<h1>{e(p['name'])}</h1>
+<div class=sub>{t(p['title'])}</div>
+<div class=ct>{contact}</div>
+<div class=ct>{t(p['availability'])} · {t(p['work_mode'])}</div>
+<h2>{lab('summary', lang)}</h2><p>{t(cv['summary'])}</p>
+<h2>{lab('experience', lang)}</h2>{jobs}
+<h2>{lab('skills_short', lang)}</h2><ul>{skills}</ul>
+<h2>{lab('projects', lang)}</h2><ul>{proj}</ul>
+<h2>{lab('courses', lang)}</h2><ul>{courses}<li>{t(cv['courses_note'])}</li></ul>
+<h2>{lab('languages', lang)}</h2><p>{langs}</p>
+<h2>{pl_('extra', lang)}</h2><ul>{extra}</ul>
+<p class=consent>{t(cv['consent'])}</p>"""
     return page_shell(lang, f"{p['name']} – CV ATS ({lang.upper()})", ATS_CSS, body)
+
 
 
 # ------------------------------------------------------------------ PDF
@@ -352,7 +386,7 @@ def build_pdfs(pages: dict[tuple[str, str], Path]) -> list[tuple[str, int]]:
     PDF_DIR.mkdir(parents=True, exist_ok=True)
     report = []
     with sync_playwright() as pw:
-        browser = pw.chromium.launch()
+        browser = pw.chromium.launch(executable_path=os.environ.get("CHROME_PATH") or None)
         page = browser.new_page()
         for key, src in pages.items():
             page.goto(src.resolve().as_uri(), wait_until="load")

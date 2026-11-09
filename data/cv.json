@@ -3,8 +3,8 @@
   "person": {
     "name": "Kornel Dybalski",
     "title": {
-      "pl": "Data Analyst · CRM & Automation",
-      "en": "Data Analyst · CRM & Automation"
+      "pl": "Specjalista CRM | Sales Operations",
+      "en": "CRM Specialist | Sales Operations"
     },
     "location": {
       "pl": "Warszawa",
@@ -16,50 +16,66 @@
     "linkedin_short": "in/kornel-dybalski",
     "github": "github.com/KornelDyb",
     "website": "korneldyb.github.io",
-    "photo": "assets/profile.png"
+    "photo": "assets/profile.png",
+    "availability": {
+      "pl": "Dostępny od zaraz",
+      "en": "Available immediately"
+    },
+    "work_mode": {
+      "pl": "Warszawa (biuro lub hybryda) albo zdalnie",
+      "en": "Warsaw (office or hybrid) or remote"
+    }
+  },
+  "tagline": {
+    "pl": "Porządkuję CRM i procesy sprzedaży tak, żeby handlowcy sprzedawali, a nie przepisywali maile.",
+    "en": "I tidy up CRMs and sales processes so reps can sell instead of retyping emails."
   },
   "summary": {
-    "pl": "Data Analyst z ponad 3-letnim doświadczeniem w analizie danych, administracji CRM i automatyzacji raportowania. W Respect Energy rozwijałem CRM dla 200–300 użytkowników sprzedaży: przeprowadziłem ok. 100–120 zmian rozwojowych i obsłużyłem 200–300 zgłoszeń błędów. Odpowiadam na pytania biznesowe z pomocą SQL (Snowflake) i Power BI, a powtarzalne zadania automatyzuję w Pythonie, n8n i przez API.",
-    "en": "Data Analyst with 3+ years of experience in data analysis, CRM administration and reporting automation. At Respect Energy I developed the CRM for 200–300 sales users: I delivered around 100–120 change requests and handled 200–300 bug reports. I answer business questions with SQL (Snowflake) and Power BI, and automate repetitive work with Python, n8n and APIs."
+    "pl": "Specjalista CRM i Sales Operations. W Respect Energy przez ponad dwa lata odpowiadałem za CRM, z którego korzystało ponad 200 handlowców: konfigurację, zmiany, szkolenia i raporty sprzedażowe. Porządkuję procesy sprzedaży tak, żeby handlowcy mniej czasu tracili na maile i ręczne zestawienia, a więcej na klientów. Wcześniej pracowałem w presales na Salesforce, więc znam CRM również od strony handlowca.",
+    "en": "CRM and Sales Operations specialist. For over two years at Respect Energy I looked after the CRM used by 200+ sales reps: configuration, change requests, training and sales reporting. I fix sales processes so reps spend less time on emails and manual spreadsheets and more time with customers. Before that I worked in presales using Salesforce, so I also know the CRM from the rep's side."
   },
   "summary_short": {
-    "pl": "Ponad 3 lata w analizie danych, administracji CRM i automatyzacji raportowania. Odpowiadam na pytania biznesowe z pomocą SQL (Snowflake) i Power BI, a powtarzalną pracę zamieniam w automaty w Pythonie, n8n i przez API.",
-    "en": "3+ years in data analysis, CRM administration and reporting automation. I answer business questions with SQL (Snowflake) and Power BI, and turn repetitive work into automations in Python, n8n and APIs."
+    "pl": "Specjalista CRM i Sales Operations. Ponad dwa lata odpowiadałem za CRM dla 200+ handlowców: konfigurację, zmiany, szkolenia i raporty. Porządkuję procesy sprzedaży, żeby handlowcy mniej czasu tracili na maile i ręczne zestawienia, a więcej na klientów.",
+    "en": "CRM and Sales Operations specialist. For over two years I looked after the CRM used by 200+ sales reps: configuration, changes, training and reporting. I fix sales processes so reps spend less time on admin and more time with customers."
   },
   "stats": [
     {
-      "value": "200–300",
+      "value": "200+",
       "label": {
-        "pl": "użytkowników CRM",
-        "en": "CRM users"
+        "pl": "handlowców w CRM",
+        "en": "sales reps on the CRM"
       }
     },
     {
-      "value": "100–120",
+      "value": "100+",
       "label": {
-        "pl": "wdrożonych zmian w CRM",
-        "en": "CRM changes delivered"
+        "pl": "wdrożonych zmian",
+        "en": "changes delivered"
+      }
+    },
+    {
+      "value": "200+",
+      "label": {
+        "pl": "rozwiązanych zgłoszeń",
+        "en": "tickets resolved"
       }
     },
     {
       "value": "~200",
       "label": {
         "pl": "przeszkolonych osób",
-        "en": "people trained"
-      }
-    },
-    {
-      "value": "4",
-      "label": {
-        "pl": "dashboardy Power BI",
-        "en": "Power BI dashboards"
+        "en": "users trained"
       }
     }
   ],
   "experience": [
     {
       "role": {
-        "pl": "Sales Support System Administration Specialist (CRM)",
+        "pl": "Specjalista ds. administracji systemu CRM (Sales Support System Administration Specialist)",
+        "en": "Sales Support System Administration Specialist (CRM)"
+      },
+      "role_short": {
+        "pl": "Specjalista ds. administracji CRM (Sales Support)",
         "en": "Sales Support System Administration Specialist (CRM)"
       },
       "company": "Respect Energy",
@@ -71,70 +87,55 @@
       "to": "2026-09",
       "bullets": [
         {
-          "pl": "Administrowałem CRM Salesbook dla 200–300 użytkowników sprzedaży (lejek sprzedażowy, struktura danych, uprawnienia); przeszkoliłem ok. 200 z nich.",
-          "en": "Administered the Salesbook CRM for 200–300 sales users (sales pipeline, data structure, permissions); trained around 200 of them.",
-          "short": {
-            "pl": "Administrowałem CRM Salesbook dla 200–300 użytkowników sprzedaży; przeszkoliłem ok. 200 osób.",
-            "en": "Administered the Salesbook CRM for 200–300 sales users; trained around 200 people."
-          }
+          "pl": "Odpowiadałem za CRM Salesbook (SaaS) dla ponad 200 handlowców: lejek sprzedażowy, strukturę danych i uprawnienia. Przeszkoliłem z obsługi systemu około 200 osób.",
+          "en": "Owned the Salesbook CRM (SaaS) for 200+ sales reps: sales pipeline, data structure and user permissions. Trained around 200 users."
         },
         {
-          "pl": "Przeprowadziłem ok. 100–120 zmian rozwojowych (change requests), od zebrania wymagań po testy UAT i wdrożenie, oraz obsłużyłem 200–300 zgłoszeń błędów.",
-          "en": "Delivered around 100–120 change requests, from requirements gathering through UAT to release, and handled 200–300 bug reports.",
-          "short": {
-            "pl": "Przeprowadziłem ok. 100–120 zmian rozwojowych (od wymagań po testy UAT) i obsłużyłem 200–300 zgłoszeń błędów.",
-            "en": "Delivered around 100–120 change requests (requirements to UAT) and handled 200–300 bug reports."
-          }
+          "pl": "Wdrożyłem ponad 100 zmian w CRM, od zebrania wymagań ze sprzedażą, przez testy UAT, po wdrożenie. Rozwiązałem ponad 200 zgłoszeń od użytkowników.",
+          "en": "Delivered 100+ CRM changes, from gathering requirements with the sales team through UAT to release, and resolved 200+ user tickets."
         },
         {
-          "pl": "Zautomatyzowałem cenniki w CRM: ceny minimalne pobierają się z SQL, zamiast być przepisywane ręcznie z maili. Ograniczyło to błędy wynikające z nieaktualnych cenników i skróciło przygotowanie oferty; handlowiec dodaje tylko marżę.",
-          "en": "Automated price lists in the CRM: minimum prices are pulled from SQL instead of being copied by hand from emails. This cut errors caused by outdated price lists and shortened offer preparation; reps now only add their margin.",
-          "short": {
-            "pl": "Zautomatyzowałem cenniki: ceny minimalne pobierają się z SQL zamiast ręcznego przepisywania z maili, co ograniczyło błędy w ofertach.",
-            "en": "Automated price lists: minimum prices come from SQL instead of being retyped from emails, cutting errors in offers."
-          }
+          "pl": "Przeniosłem wyceny z maila do CRM. Handlowiec zamawia wycenę zmianą statusu, dział wycen odpowiada w systemie, a cała historia sprawy jest w jednym miejscu. Do tego automatyczne powiadomienia i notatki przy zmianie statusu.",
+          "en": "Moved pricing requests from email into the CRM. A rep requests a quote by changing a status, the pricing team replies in the system, and the full history sits in one place. Added automatic notifications and notes on status changes."
         },
         {
-          "pl": "Przeniosłem proces wycen z korespondencji mailowej do CRM: handlowiec zamawia wycenę zmianą statusu, a dział wycen odpowiada w systemie, z pełną historią i widocznością sprawy.",
-          "en": "Moved the pricing-request process from email into the CRM: a rep requests a quote by changing a status, and the pricing team answers in the system, with full history and visibility.",
-          "short": {
-            "pl": "Przeniosłem proces wycen z korespondencji mailowej do CRM, z pełną historią każdej sprawy.",
-            "en": "Moved pricing requests from email into the CRM, with full history for every case."
-          }
+          "pl": "Podpiąłem cenniki w CRM do bazy SQL. Ceny minimalne aktualizują się same, handlowiec dodaje tylko marżę, a oferty nie powstają już na nieaktualnych cenach.",
+          "en": "Connected CRM price lists to an SQL database, so minimum prices update automatically and reps only add their margin. Offers are no longer built on outdated prices."
         },
         {
-          "pl": "Skonfigurowałem automatyzacje workflow w CRM, m.in. powiadomienia e-mail i automatyczne notatki przy zmianie statusu.",
-          "en": "Configured CRM workflow automations, including email notifications and automatic notes on status changes.",
-          "short": {
-            "pl": "Konfigurowałem automatyzacje workflow w CRM i odpowiadałem na pytania biznesowe zapytaniami SQL.",
-            "en": "Configured CRM workflow automations and answered business questions with SQL queries."
-          }
+          "pl": "Przygotowałem 4 dashboardy w Power BI (Snowflake, SQL, DAX) dla sprzedaży i zarządu: lejek nowego produktu, kampania kluczowych klientów, cenniki i koszty licencji CRM.",
+          "en": "Built 4 Power BI dashboards (Snowflake, SQL, DAX) for sales and management: new product pipeline, key account campaign, price lists and CRM licence costs."
         },
         {
-          "pl": "Zbudowałem 4 dashboardy w Power BI na danych ze Snowflake (SQL, DAX): koszty licencji CRM na podstawie aktywnych kont, lejek sprzedaży nowego produktu (klienci i wolumen według statusu), aktualne i archiwalne cenniki oraz postęp kampanii kluczowych klientów według handlowców.",
-          "en": "Built 4 Power BI dashboards on Snowflake data (SQL, DAX): CRM licence costs based on active accounts, the sales funnel of a new product (customers and volume by status), current and historical price lists, and key-account campaign progress by sales rep.",
-          "short": {
-            "pl": "Zbudowałem 4 dashboardy Power BI na danych ze Snowflake: koszty licencji, lejek nowego produktu, cenniki i kampania kluczowych klientów.",
-            "en": "Built 4 Power BI dashboards on Snowflake data: licence costs, new-product funnel, price lists and a key-account campaign."
-          }
+          "pl": "Zautomatyzowałem w Pythonie cotygodniowy raport KPI kluczowych klientów (spotkania, aktywne wątki, wyniki handlowców na tle zespołu). Raport sam wychodzi mailem i oszczędza około 2 godzin pracy tygodniowo.",
+          "en": "Automated a weekly key account KPI report in Python (meetings, active threads, each rep against the team average). It goes out by email on its own and saves about 2 hours of manual work a week."
+        }
+      ],
+      "design": [
+        {
+          "pl": "Odpowiadałem za CRM Salesbook (SaaS) dla 200+ handlowców: lejek, dane i uprawnienia. Przeszkoliłem około 200 osób.",
+          "en": "Owned the Salesbook CRM (SaaS) for 200+ sales reps: pipeline, data and permissions. Trained around 200 users."
         },
         {
-          "pl": "Zautomatyzowałem w Pythonie cotygodniowy raport KPI kluczowych klientów (ETL: API → Python → Excel → automatyczna wysyłka e-mail): liczba spotkań i aktywnych wątków, trend tydzień do tygodnia, wyniki handlowców na tle średniej zespołu; raport zastąpił ok. 2 h ręcznej pracy tygodniowo.",
-          "en": "Automated a weekly key-account KPI report in Python (ETL: API → Python → Excel → automatic email): number of meetings and active threads, week-over-week trend, each rep against the team average; the report replaced about 2 hours of manual work per week.",
-          "short": {
-            "pl": "Zautomatyzowałem w Pythonie tygodniowy raport KPI kluczowych klientów (API → Excel → e-mail), oszczędzając ok. 2 h pracy tygodniowo.",
-            "en": "Automated a weekly key-account KPI report in Python (API → Excel → email), saving about 2 hours of work per week."
-          }
+          "pl": "Wdrożyłem 100+ zmian w CRM, od wymagań przez testy UAT po wdrożenie, i rozwiązałem 200+ zgłoszeń.",
+          "en": "Delivered 100+ CRM changes, from requirements through UAT to release, and resolved 200+ user tickets."
         },
         {
-          "pl": "Odpowiadałem na pytania biznesowe z danymi, pisząc zapytania SQL łączące tabele w hurtowni Snowflake.",
-          "en": "Answered business questions with data, writing SQL queries joining tables in the Snowflake data warehouse.",
-          "short": null
+          "pl": "Zbudowałem 4 dashboardy Power BI dla sprzedaży i zarządu (Snowflake, SQL, DAX).",
+          "en": "Built 4 Power BI dashboards for sales and management (Snowflake, SQL, DAX)."
+        },
+        {
+          "pl": "Zautomatyzowałem w Pythonie tygodniowy raport KPI kluczowych klientów. Wysyła się sam i oszczędza ok. 2 h tygodniowo.",
+          "en": "Automated a weekly key account KPI report in Python. It sends itself and saves about 2 hours a week."
         }
       ]
     },
     {
       "role": {
+        "pl": "Junior Analyst",
+        "en": "Junior Analyst"
+      },
+      "role_short": {
         "pl": "Junior Analyst",
         "en": "Junior Analyst"
       },
@@ -147,32 +148,33 @@
       "to": "2024-07",
       "bullets": [
         {
-          "pl": "Wyszukiwałem i analizowałem ok. 40–50 inwestycji nieruchomościowych o wartości liczonej w milionach PLN, licząc ROI w modelach finansowych w Excelu.",
-          "en": "Sourced and analysed around 40–50 real-estate investments worth millions of PLN each, calculating ROI in Excel financial models.",
-          "short": {
-            "pl": "Przeanalizowałem ok. 40–50 inwestycji nieruchomościowych o wartości liczonej w milionach PLN (modele ROI w Excelu).",
-            "en": "Analysed around 40–50 real-estate investments worth millions of PLN (ROI models in Excel)."
-          }
+          "pl": "Przeanalizowałem ponad 40 nieruchomości inwestycyjnych w Excelu (modele ROI) i przygotowywałem dla zarządu rekomendacje zakupu i komercjalizacji budynków.",
+          "en": "Analysed 40+ investment properties in Excel (ROI models) and prepared purchase and commercialisation recommendations for the Board."
         },
         {
-          "pl": "Rekomendowałem Zarządowi, które budynki kupić i jak je skomercjalizować, na podstawie porównania rentowności (ROI).",
-          "en": "Recommended to the Board which buildings to buy and how to commercialise them, based on ROI comparisons.",
-          "short": {
-            "pl": "Rekomendowałem Zarządowi zakup i komercjalizację budynków; analizowałem tabele czynszowe w SAP Business One.",
-            "en": "Recommended building purchases and commercialisation to the Board; analysed rent rolls in SAP Business One."
-          }
+          "pl": "Prowadziłem tabele czynszowe w SAP Business One i przekazywałem je do działu finansów, pilnując, żeby wszystkie dane się zgadzały.",
+          "en": "Maintained rent rolls in SAP Business One and passed them to the finance team, making sure all the data matched."
+        }
+      ],
+      "design": [
+        {
+          "pl": "Przeanalizowałem 40+ nieruchomości (modele ROI w Excelu) i przygotowywałem rekomendacje dla zarządu.",
+          "en": "Analysed 40+ properties (ROI models in Excel) and prepared recommendations for the Board."
         },
         {
-          "pl": "Analizowałem tabele czynszowe i efektywność produktów na danych z SAP Business One.",
-          "en": "Analysed rent rolls and product performance using SAP Business One data.",
-          "short": null
+          "pl": "Prowadziłem tabele czynszowe w SAP Business One dla działu finansów.",
+          "en": "Maintained rent rolls in SAP Business One for the finance team."
         }
       ]
     },
     {
       "role": {
         "pl": "Admin Procurement SAP",
-        "en": "Procurement Administrator (SAP)"
+        "en": "Admin Procurement SAP"
+      },
+      "role_short": {
+        "pl": "Admin Procurement SAP",
+        "en": "Admin Procurement SAP"
       },
       "company": "Cellnex",
       "city": {
@@ -183,22 +185,27 @@
       "to": "2024-03",
       "bullets": [
         {
-          "pl": "Obsługiwałem procesy zakupowe i analizowałem dane zakupowe w SAP.",
-          "en": "Ran procurement processes and analysed procurement data in SAP.",
-          "short": {
-            "pl": "Obsługiwałem procesy zakupowe w SAP i przygotowywałem zestawienia operacyjne w Excelu dla finansów i operacji.",
-            "en": "Ran procurement processes in SAP and prepared operational Excel reports for finance and operations."
-          }
+          "pl": "Obsługiwałem zamówienia i procesy zakupowe w SAP.",
+          "en": "Handled purchase orders and procurement processes in SAP."
         },
         {
-          "pl": "Przygotowywałem zestawienia operacyjne w Excelu dla działów finansów i operacji.",
-          "en": "Prepared operational Excel reports for the finance and operations teams.",
-          "short": null
+          "pl": "Przygotowywałem zestawienia operacyjne w Excelu dla działu zakupów.",
+          "en": "Prepared operational Excel reports for the procurement team."
+        }
+      ],
+      "design": [
+        {
+          "pl": "Obsługiwałem procesy zakupowe w SAP i przygotowywałem zestawienia operacyjne dla działu zakupów.",
+          "en": "Handled procurement processes in SAP and prepared operational reports for the procurement team."
         }
       ]
     },
     {
       "role": {
+        "pl": "Presales",
+        "en": "Presales"
+      },
+      "role_short": {
         "pl": "Presales",
         "en": "Presales"
       },
@@ -209,149 +216,255 @@
       },
       "from": "2022-09",
       "to": "2023-03",
-      "in_pdf": false,
       "bullets": [
         {
-          "pl": "Prezentacje produktu i dopasowanie rozwiązania do potrzeb klienta.",
-          "en": "Product presentations and tailoring the solution to client needs.",
-          "short": null
+          "pl": "Byłem pierwszą linią kontaktu z klientem: rozmowy, prezentacja produktu i dobór rozwiązania do jego potrzeb.",
+          "en": "First point of contact for customers: conversations, product presentations and matching the solution to their needs."
         },
         {
-          "pl": "Budowanie relacji i zwiększanie konwersji; praca w Salesforce jako użytkownik.",
-          "en": "Built relationships and improved conversion; daily work in Salesforce as a user.",
-          "short": null
+          "pl": "Na co dzień pracowałem w Salesforce po stronie sprzedaży, więc wiem, czego handlowiec potrzebuje od CRM.",
+          "en": "Worked in Salesforce every day on the sales side, so I know what a rep actually needs from a CRM."
+        }
+      ],
+      "design": [
+        {
+          "pl": "Pierwsza linia kontaktu z klientem: rozmowy, prezentacje produktu i dobór rozwiązania. Na co dzień praca w Salesforce.",
+          "en": "First point of contact for customers: conversations, presentations and matching the solution. Daily work in Salesforce."
         }
       ]
+    }
+  ],
+  "case_study": {
+    "title": {
+      "pl": "Case: wyceny z maila do CRM",
+      "en": "Case: pricing requests from email to CRM"
+    },
+    "rows": [
+      {
+        "label": {
+          "pl": "Problem",
+          "en": "Problem"
+        },
+        "text": {
+          "pl": "Handlowcy zamawiali wyceny mailem, ceny minimalne przepisywano ręcznie, a historia ginęła w skrzynkach.",
+          "en": "Reps requested quotes by email, minimum prices were retyped by hand and the history got lost in inboxes."
+        }
+      },
+      {
+        "label": {
+          "pl": "Co zrobiłem",
+          "en": "What I did"
+        },
+        "text": {
+          "pl": "Przeniosłem wyceny do CRM (zamówienie zmianą statusu, odpowiedź w systemie, automatyczne powiadomienia) i podpiąłem ceny minimalne do bazy SQL.",
+          "en": "Moved quotes into the CRM (request by status change, reply in the system, automatic notifications) and connected minimum prices to an SQL database."
+        }
+      },
+      {
+        "label": {
+          "pl": "Efekt",
+          "en": "Result"
+        },
+        "text": {
+          "pl": "Pełna historia każdej wyceny w jednym miejscu, mniej błędów z nieaktualnych cenników i szybsze przygotowanie oferty.",
+          "en": "Full history of every quote in one place, fewer errors from outdated price lists and faster offer preparation."
+        }
+      }
+    ]
+  },
+  "value_props": [
+    {
+      "title": {
+        "pl": "Porządny CRM",
+        "en": "A clean CRM"
+      },
+      "text": {
+        "pl": "jasny lejek, czyste dane i uprawnienia, które mają sens.",
+        "en": "a clear pipeline, clean data and permissions that make sense."
+      }
+    },
+    {
+      "title": {
+        "pl": "Mniej ręcznej pracy",
+        "en": "Less manual work"
+      },
+      "text": {
+        "pl": "automatyzuję to, co handlowcy robią mailem i w Excelu.",
+        "en": "I automate what reps do in email and Excel."
+      }
+    },
+    {
+      "title": {
+        "pl": "Raporty, z których się korzysta",
+        "en": "Reports people use"
+      },
+      "text": {
+        "pl": "KPI dla sprzedaży i zarządu w Power BI.",
+        "en": "KPIs for sales and management in Power BI."
+      }
+    },
+    {
+      "title": {
+        "pl": "Język sprzedaży",
+        "en": "I speak sales"
+      },
+      "text": {
+        "pl": "byłem w presales, więc rozmawiam z handlowcami jak jeden z nich.",
+        "en": "I worked in presales, so I talk to reps as one of them."
+      }
     }
   ],
   "skills": [
     {
       "group": {
-        "pl": "Analiza danych i BI",
-        "en": "Data analysis & BI"
-      },
-      "short_group": {
-        "pl": "Dane i BI",
-        "en": "Data & BI"
+        "pl": "CRM i sprzedaż",
+        "en": "CRM and sales"
       },
       "items": [
         {
-          "pl": "SQL (JOIN, modelowanie danych)",
-          "en": "SQL (joins, data modelling)"
+          "pl": "administracja CRM",
+          "en": "CRM administration"
         },
-        "Snowflake",
-        "Power BI (DAX)",
-        "Power Query",
-        {
-          "pl": "Excel (modele finansowe, VBA)",
-          "en": "Excel (financial models, VBA)"
-        },
-        {
-          "pl": "statystyka",
-          "en": "statistics"
-        }
-      ],
-      "short_items": [
-        "SQL",
-        "Snowflake",
-        "Power BI (DAX)",
-        "Power Query",
-        "Excel"
-      ]
-    },
-    {
-      "group": {
-        "pl": "Automatyzacja i integracje",
-        "en": "Automation & integrations"
-      },
-      "short_group": {
-        "pl": "Automatyzacja",
-        "en": "Automation"
-      },
-      "items": [
-        "ETL",
-        "API",
-        "n8n",
-        "Python (Pandas, NumPy, BeautifulSoup, Selenium)",
-        "Excel VBA",
-        "GitHub Actions"
-      ],
-      "short_items": [
-        "Python (Pandas, NumPy)",
-        "ETL",
-        "API",
-        "n8n",
-        "VBA"
-      ]
-    },
-    {
-      "group": {
-        "pl": "Systemy",
-        "en": "Systems"
-      },
-      "short_group": {
-        "pl": "Systemy",
-        "en": "Systems"
-      },
-      "items": [
-        "CRM (Salesbook)",
         "Salesforce",
-        "SAP",
-        "SAP Business One",
-        "Jira",
-        "Confluence"
-      ],
-      "short_items": [
-        "CRM Salesbook",
-        "SAP",
-        "SAP Business One",
-        "Jira",
-        "Confluence"
-      ]
-    },
-    {
-      "group": {
-        "pl": "Metodyki i biznes",
-        "en": "Methods & business"
-      },
-      "short_group": {
-        "pl": "Biznes",
-        "en": "Business"
-      },
-      "items": [
-        "Agile / Scrum",
+        "Salesbook (SaaS)",
+        "HubSpot",
         {
-          "pl": "analiza wymagań",
-          "en": "requirements analysis"
+          "pl": "lejek sprzedażowy",
+          "en": "sales pipeline"
         },
-        "change requests",
         {
-          "pl": "testy UAT",
-          "en": "UAT testing"
+          "pl": "automatyzacje workflow",
+          "en": "workflow automation"
+        },
+        {
+          "pl": "uprawnienia",
+          "en": "user permissions"
+        },
+        {
+          "pl": "jakość danych",
+          "en": "data quality"
         },
         {
           "pl": "szkolenia użytkowników",
           "en": "user training"
+        }
+      ]
+    },
+    {
+      "group": {
+        "pl": "Wdrożenia i procesy",
+        "en": "Implementation and processes"
+      },
+      "items": [
+        {
+          "pl": "analiza wymagań",
+          "en": "requirements gathering"
+        },
+        "change requests",
+        {
+          "pl": "testy UAT",
+          "en": "UAT"
         },
         {
-          "pl": "raportowanie KPI",
+          "pl": "obsługa zgłoszeń",
+          "en": "ticket handling"
+        },
+        "Jira",
+        "Confluence",
+        "Agile / Scrum"
+      ]
+    },
+    {
+      "group": {
+        "pl": "Raportowanie",
+        "en": "Reporting"
+      },
+      "items": [
+        "Power BI (DAX)",
+        "SQL",
+        "Snowflake",
+        "Excel (VBA, Power Query)",
+        {
+          "pl": "raporty KPI",
           "en": "KPI reporting"
         }
-      ],
-      "short_items": [
+      ]
+    },
+    {
+      "group": {
+        "pl": "Automatyzacja",
+        "en": "Automation"
+      },
+      "items": [
+        "n8n",
+        "Make",
+        "Python",
         {
-          "pl": "Analiza wymagań",
-          "en": "Requirements analysis"
+          "pl": "API",
+          "en": "APIs"
         },
-        "UAT",
-        "Agile / Scrum",
         {
-          "pl": "Szkolenia",
-          "en": "Training"
-        }
+          "pl": "integracje systemów",
+          "en": "system integrations"
+        },
+        "GitHub Actions"
+      ]
+    },
+    {
+      "group": {
+        "pl": "Inne systemy",
+        "en": "Other systems"
+      },
+      "items": [
+        "SAP",
+        "SAP Business One"
       ]
     }
   ],
+  "chips": {
+    "pl": [
+      "Salesforce",
+      "Salesbook (SaaS)",
+      "HubSpot",
+      "Administracja CRM",
+      "Lejek sprzedażowy",
+      "Automatyzacje workflow",
+      "Analiza wymagań",
+      "Testy UAT",
+      "Jira",
+      "Confluence",
+      "Power BI (DAX)",
+      "SQL",
+      "Snowflake",
+      "Excel / VBA",
+      "n8n",
+      "Make",
+      "Python",
+      "API",
+      "SAP"
+    ],
+    "en": [
+      "Salesforce",
+      "Salesbook (SaaS)",
+      "HubSpot",
+      "CRM administration",
+      "Sales pipeline",
+      "Workflow automation",
+      "Requirements",
+      "UAT",
+      "Jira",
+      "Confluence",
+      "Power BI (DAX)",
+      "SQL",
+      "Snowflake",
+      "Excel / VBA",
+      "n8n",
+      "Make",
+      "Python",
+      "APIs",
+      "SAP"
+    ]
+  },
   "courses": [
     {
       "name": "The Complete SQL Bootcamp: Go from Zero to Hero",
@@ -376,7 +489,7 @@
   ],
   "courses_note": {
     "pl": "Pełna lista kursów (m.in. BPMN 2.0, Jira i Confluence, UML) na LinkedIn",
-    "en": "Full list of courses (incl. BPMN 2.0, Jira & Confluence, UML) on LinkedIn"
+    "en": "Full list (incl. BPMN 2.0, Jira and Confluence, UML) on LinkedIn"
   },
   "languages": [
     {
@@ -400,46 +513,108 @@
       }
     }
   ],
+  "extra": [
+    {
+      "pl": "Prawo jazdy kat. B",
+      "en": "Driving licence: category B"
+    },
+    {
+      "pl": "Twórca treści rozrywkowych: TikTok (blisko 100 tys. obserwujących) i Twitch (ponad 20 tys. obserwujących)",
+      "en": "Entertainment content creator: TikTok (nearly 100k followers) and Twitch (20k+ followers)"
+    }
+  ],
+  "outside": {
+    "pl": "Prowadziłem rozrywkowe kanały na TikToku (blisko 100 tys. obserwujących) i Twitchu (ponad 20 tys.), na których zarabiałem. Dało mi to swobodę przed kamerą i w rozmowie z ludźmi.",
+    "en": "Ran entertainment channels on TikTok (nearly 100k followers) and Twitch (20k+), which I earned money from. It made me comfortable on camera and talking to people."
+  },
   "consent": {
-    "pl": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z RODO).",
-    "en": "I consent to the processing of my personal data for the purposes of the recruitment process (in accordance with the GDPR)."
+    "pl": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez pracodawcę, do którego aplikuję, na potrzeby obecnego procesu rekrutacji. Wyrażam również zgodę na przetwarzanie moich danych w przyszłych procesach rekrutacyjnych.",
+    "en": "I consent to the processing of my personal data by the employer I am applying to for the purposes of this and future recruitment processes."
   },
   "projects": [
     {
       "name": {
-        "pl": "Ceny mieszkań w Warszawie",
-        "en": "Warsaw apartment prices"
+        "pl": "Strona AI consulting z automatycznym lejkiem leadów",
+        "en": "AI consulting website with an automated lead funnel"
       },
-      "url": "korneldyb.github.io/projects/warsaw-housing/",
+      "short_name": {
+        "pl": "Strona AI consulting",
+        "en": "AI consulting website"
+      },
+      "tech": "Make, HubSpot, Gmail, Google Calendar",
       "text": {
-        "pl": "Analiza 8 665 ogłoszeń: czyszczenie danych, przypisanie do dzielnic po współrzędnych (shapely), model regresji i kalkulator wyceny.",
-        "en": "Analysis of 8,665 listings: data cleaning, geo-matching to districts (shapely), a regression model and a price estimator."
+        "pl": "Moja strona z formularzem rezerwacji rozmowy. Lead trafia automatycznie do CRM, dostaje maila z potwierdzeniem, a spotkanie ląduje w kalendarzu. Projekt w trakcie rozwoju.",
+        "en": "My own site with a call booking form. Each lead goes straight into the CRM, gets a confirmation email, and the meeting lands in the calendar. Work in progress."
       },
-      "tech": "Python, pandas, numpy, shapely"
-    },
-    {
-      "name": {
-        "pl": "Automatyczny raport kursów NBP",
-        "en": "Automated NBP FX report"
+      "short": {
+        "pl": "formularz rezerwacji, lead trafia do HubSpot, mail i termin w kalendarzu (Make)",
+        "en": "booking form, lead goes to HubSpot, email and calendar invite (Make)"
       },
-      "url": "korneldyb.github.io/projects/nbp-rates/",
-      "text": {
-        "pl": "Codzienny pipeline w GitHub Actions: pobranie z API NBP, KPI, raport, dashboard i alert przy dużym ruchu kursu.",
-        "en": "Daily GitHub Actions pipeline: NBP API fetch, KPIs, report, dashboard and an alert on large moves."
-      },
-      "tech": "Python, GitHub Actions, pytest"
+      "url": null,
+      "badge": {
+        "pl": "w trakcie",
+        "en": "in progress"
+      }
     },
     {
       "name": {
         "pl": "Lead scoring",
         "en": "Lead scoring"
       },
-      "url": "korneldyb.github.io/projects/lead-scoring/",
-      "text": {
-        "pl": "Narzędzie dla sprzedaży: ranking leadów Hot/Warm/Cold według przejrzystych reguł, z importem i eksportem CSV.",
-        "en": "Sales tool ranking leads as Hot/Warm/Cold with transparent rules, with CSV import and export."
+      "short_name": {
+        "pl": "Lead scoring",
+        "en": "Lead scoring"
       },
-      "tech": "JavaScript"
+      "tech": "JavaScript",
+      "text": {
+        "pl": "Narzędzie, które ocenia leady według reguł i dzieli je na Hot, Warm i Cold. Import i eksport CSV.",
+        "en": "A tool that scores leads with rules and sorts them into Hot, Warm and Cold. CSV import and export."
+      },
+      "short": {
+        "pl": "ocena leadów Hot / Warm / Cold według reguł (JavaScript)",
+        "en": "rule-based Hot / Warm / Cold lead ranking (JavaScript)"
+      },
+      "url": "korneldyb.github.io/projects/lead-scoring/"
+    },
+    {
+      "name": {
+        "pl": "Automatyczny raport kursów NBP",
+        "en": "Automated NBP exchange rate report"
+      },
+      "short_name": {
+        "pl": "Raport kursów NBP",
+        "en": "NBP rates report"
+      },
+      "tech": "Python, GitHub Actions",
+      "text": {
+        "pl": "Codziennie pobiera dane z API NBP, liczy wskaźniki i publikuje raport z alertami.",
+        "en": "Pulls data from the NBP API every day, calculates KPIs and publishes a report with alerts."
+      },
+      "short": {
+        "pl": "codzienny automatyczny raport z API (Python, GitHub Actions)",
+        "en": "daily automated report from an API (Python, GitHub Actions)"
+      },
+      "url": "korneldyb.github.io/projects/nbp-rates/"
+    },
+    {
+      "name": {
+        "pl": "Ceny mieszkań w Warszawie",
+        "en": "Warsaw housing prices"
+      },
+      "short_name": {
+        "pl": "Ceny mieszkań w Warszawie",
+        "en": "Warsaw housing prices"
+      },
+      "tech": "Python, pandas",
+      "text": {
+        "pl": "Analiza 8 665 ogłoszeń, model regresji i kalkulator wyceny mieszkania.",
+        "en": "Analysis of 8,665 listings, a regression model and a flat valuation calculator."
+      },
+      "short": {
+        "pl": "analiza 8 665 ogłoszeń i kalkulator wyceny (Python)",
+        "en": "8,665 listings analysed, valuation calculator (Python)"
+      },
+      "url": "korneldyb.github.io/projects/warsaw-housing/"
     }
   ]
 }

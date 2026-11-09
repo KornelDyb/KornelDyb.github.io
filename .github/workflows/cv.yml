@@ -32,7 +32,7 @@ jobs:
 
       - name: Install Playwright + Chromium
         run: |
-          pip install playwright==1.48.0
+          pip install playwright==1.48.0 segno==1.6.6
           python -m playwright install --with-deps chromium
 
       - name: Build CV from data/cv.json
