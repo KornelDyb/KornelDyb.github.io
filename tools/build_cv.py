@@ -174,7 +174,7 @@ P_L = {  # labels used only in the printable CVs
     "bring": ("Co wnoszę do zespołu", "What I bring to the team"),
     "tools": ("Narzędzia i umiejętności", "Tools and skills"),
     "projects_short": ("Projekty", "Projects"),
-    "outside": ("Poza pracą", "Outside work"),
+    "outside": ("Zainteresowania", "Interests"),
     "extra": ("Dodatkowe", "Other"),
     "qr": ("Moje projekty: zeskanuj albo wejdź", "My projects: scan or visit"),
 }
