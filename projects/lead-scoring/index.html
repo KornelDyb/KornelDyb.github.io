@@ -15,7 +15,6 @@
 <style>
   /* ordinal tier ramp (one hue, dark = hotter) */
   :root { --hot: #b34a17; --warm: #eb8a54; --cold: #b8c9ce; --tier-ink-hot: #fff; --tier-ink: #102f38; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hot: #f08a4b; --warm: #a85a2c; --cold: #35505a; --tier-ink-hot: #102f38; --tier-ink: #e4ecea; } }
   :root[data-theme="dark"] { --hot: #f08a4b; --warm: #a85a2c; --cold: #35505a; --tier-ink-hot: #102f38; --tier-ink: #e4ecea; }
   .app { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; margin-top: 30px; align-items: start; }
   @media (max-width: 920px) { .app { grid-template-columns: 1fr; } }

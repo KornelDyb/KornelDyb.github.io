@@ -15,7 +15,6 @@
 <style>
   /* sequential blue ramp (light → dark) for the map */
   :root { --q1:#cde2fb; --q2:#9ec5f4; --q3:#6da7ec; --q4:#3987e5; --q5:#256abf; --q6:#104281; --bar:#2a78d6; --band: color-mix(in srgb, var(--bar) 18%, transparent); --grid: var(--line); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bar:#3987e5; } }
   :root[data-theme="dark"] { --bar:#3987e5; }
   .grid2 { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; margin-top: 22px; }
   @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }

@@ -26,17 +26,7 @@
   --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
   --wrap: 1120px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #0c1b20; --paper-2: #132a31; --surface: #10242a;
-    --ink: #e2eef1; --ink-2: #a3bec5; --ink-3: #809fa7;
-    --line: #24414a; --deep: #19535f; --deep-ink: #f2fafb;
-    --marker: #5cc3d6; --marker-ink: #0d2a31;
-    --pine: #79c7d5; --good: #4cc488; --bad: #f08a80;
-    --s1: #3987e5; --s2: #d95926; --s3: #199e70;
-  }
-}
+/* Always light: the site no longer follows the system dark mode. */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --paper: #0c1b20; --paper-2: #132a31; --surface: #10242a;
