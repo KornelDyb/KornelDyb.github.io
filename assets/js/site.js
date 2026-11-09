@@ -29,6 +29,37 @@
   if (y) y.textContent = new Date().getFullYear();
 })();
 
+// Light / dark switch. Light is the default; a visitor's choice is remembered.
+(function () {
+  const root = document.documentElement;
+  const get = () => { try { return localStorage.getItem("theme"); } catch (e) { return null; } };
+  const set = v => { try { localStorage.setItem("theme", v); } catch (e) {} };
+  const moon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>';
+  const sun = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>';
+  const lang = document.querySelector(".top .lang");
+  if (!lang) return;
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "theme-toggle";
+  lang.insertAdjacentElement("beforebegin", btn);
+  function apply(t) {
+    if (t === "dark") root.dataset.theme = "dark"; else delete root.dataset.theme;
+    const dark = t === "dark";
+    btn.innerHTML = dark ? sun : moon;
+    btn.setAttribute("aria-pressed", String(dark));
+    const label = window.KD ? KD.t(dark ? "Włącz jasny motyw" : "Włącz ciemny motyw", dark ? "Switch to light mode" : "Switch to dark mode") : "Theme";
+    btn.setAttribute("aria-label", label);
+    btn.title = label;
+  }
+  apply(get() === "dark" ? "dark" : "light");
+  btn.addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    set(next);
+    apply(next);
+  });
+  document.addEventListener("langchange", () => apply(root.dataset.theme === "dark" ? "dark" : "light"));
+})();
+
 // Shared tooltip
 window.KDTip = (function () {
   let el;
